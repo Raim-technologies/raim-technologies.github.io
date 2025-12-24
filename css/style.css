@@ -118,6 +118,11 @@ button {
     align-items: center;
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
 .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
@@ -488,6 +493,11 @@ section {
 .footer-logo {
     display: inline-block;
     margin-bottom: 20px;
+}
+
+.footer-logo .logo-img {
+    height: 36px;
+    width: auto;
 }
 
 .footer-address {
