@@ -93,12 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
 
                 // Build form data for Google Forms
-                const googleFormData = new FormData();
-                googleFormData.append(ENTRY_IDS.company, contactForm.querySelector('[name="company"]').value);
-                googleFormData.append(ENTRY_IDS.name, contactForm.querySelector('[name="name"]').value);
-                googleFormData.append(ENTRY_IDS.email, contactForm.querySelector('[name="email"]').value);
-                googleFormData.append(ENTRY_IDS.phone, contactForm.querySelector('[name="phone"]').value);
-                googleFormData.append(ENTRY_IDS.message, contactForm.querySelector('[name="message"]').value);
+                const formData = new URLSearchParams();
+                formData.append(ENTRY_IDS.company, contactForm.querySelector('[name="company"]').value);
+                formData.append(ENTRY_IDS.name, contactForm.querySelector('[name="name"]').value);
+                formData.append(ENTRY_IDS.email, contactForm.querySelector('[name="email"]').value);
+                formData.append(ENTRY_IDS.phone, contactForm.querySelector('[name="phone"]').value);
+                formData.append(ENTRY_IDS.message, contactForm.querySelector('[name="message"]').value);
 
                 // Submit to Google Forms
                 const submitBtn = contactForm.querySelector('button[type="submit"]');
@@ -108,7 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 fetch(GOOGLE_FORM_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    body: googleFormData
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: formData.toString()
                 })
                 .then(function() {
                     alert('お問い合わせありがとうございます。\n内容を確認の上、担当者よりご連絡いたします。');
