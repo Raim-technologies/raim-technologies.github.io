@@ -618,12 +618,31 @@ section {
 }
 
 .message-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.message-text {
+.message-body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
     margin-top: 40px;
+    align-items: start;
+}
+
+.message-photo {
+    position: sticky;
+    top: 120px;
+}
+
+.ceo-photo {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--color-border);
+}
+
+.message-text {
+    margin-top: 0;
 }
 
 .message-text p {
@@ -1113,6 +1132,17 @@ section {
     .services-grid,
     .works-grid {
         grid-template-columns: 1fr;
+    }
+
+    .message-body {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .message-photo {
+        position: static;
+        max-width: 180px;
+        margin: 0 auto;
     }
 
     .hero-buttons {
