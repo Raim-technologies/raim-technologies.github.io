@@ -53,18 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form submission handling
+    // Form submission handling - Google Forms integration
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
-
             // Simple validation
-            const requiredFields = ['name', 'email', 'subject', 'message'];
+            const requiredFields = ['name', 'email', 'message'];
             let isValid = true;
 
             requiredFields.forEach(function(field) {
@@ -86,9 +82,46 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (isValid) {
-                // Here you would typically send the form data to a server
-                alert('お問い合わせありがとうございます。\n内容を確認の上、担当者よりご連絡いたします。');
-                contactForm.reset();
+                // Google Forms configuration
+                const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeepo2Ly3TMbAVJxlf-r6nzKSZGHj-MK167bwc7vXExN_g0zQ/formResponse';
+                const ENTRY_IDS = {
+                    company: 'entry.672109352',
+                    name: 'entry.1181202111',
+                    email: 'entry.832768872',
+                    phone: 'entry.890439440',
+                    message: 'entry.417484037'
+                };
+
+                // Build form data for Google Forms
+                const googleFormData = new FormData();
+                googleFormData.append(ENTRY_IDS.company, contactForm.querySelector('[name="company"]').value);
+                googleFormData.append(ENTRY_IDS.name, contactForm.querySelector('[name="name"]').value);
+                googleFormData.append(ENTRY_IDS.email, contactForm.querySelector('[name="email"]').value);
+                googleFormData.append(ENTRY_IDS.phone, contactForm.querySelector('[name="phone"]').value);
+                googleFormData.append(ENTRY_IDS.message, contactForm.querySelector('[name="message"]').value);
+
+                // Submit to Google Forms
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = '送信中...';
+
+                fetch(GOOGLE_FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: googleFormData
+                })
+                .then(function() {
+                    alert('お問い合わせありがとうございます。\n内容を確認の上、担当者よりご連絡いたします。');
+                    contactForm.reset();
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                    alert('送信中にエラーが発生しました。\n直接メールでお問い合わせください。');
+                })
+                .finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '送信する';
+                });
             }
         });
     }
