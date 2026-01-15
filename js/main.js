@@ -3,6 +3,10 @@
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function () {
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+
     // Mobile Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navList = document.querySelector('.nav-list');
