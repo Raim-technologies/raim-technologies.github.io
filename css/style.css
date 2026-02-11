@@ -5,10 +5,10 @@
 /* CSS Variables */
 :root {
     /* Colors - Light theme */
-    --color-primary: #71a203;
-    --color-primary-light: #8bbc12;
-    --color-primary-dark: #5b8100;
-    --color-primary-glow: rgba(113, 162, 3, 0.15);
+    --color-primary: #1dbd4d;
+    --color-primary-light: #45d470;
+    --color-primary-dark: #13a13e;
+    --color-primary-glow: rgba(29, 189, 77, 0.15);
 
     --color-bg: #ffffff;
     --color-bg-secondary: #f6f7f9;
