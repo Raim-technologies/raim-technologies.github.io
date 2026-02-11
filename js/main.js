@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentScroll = window.pageYOffset;
 
         if (currentScroll > 100) {
-            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.04)';
         } else {
             header.style.boxShadow = 'none';
         }
