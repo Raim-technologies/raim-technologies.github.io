@@ -6,88 +6,114 @@
     <meta name="description" content="株式会社Raimテクノロジーズへのお問い合わせ。ご質問、ご相談はこちらからお気軽にどうぞ。">
     <link rel="icon" type="image/png" href="assets/new-logo/logo-icon.png">
     <title>お問い合わせ | 株式会社Raimテクノロジーズ</title>
-    <link rel="stylesheet" href="css/style.css?v=20260212a">
+    <link rel="stylesheet" href="css/style.css?v=20260217d">
+    <link rel="preload" href="assets/new-logo/logo-full1.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="js/lucide.min.js" defer></script>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="index.html" class="logo">
-                    <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="logo-img">
+    <div id="splash">
+        <img src="assets/new-logo/logo-full1.png" alt="" class="splash-logo">
+    </div>
+
+    <!-- フローティング要素 -->
+    <div class="gh" id="gh">
+        <a href="index.html" class="gh-logo">
+            <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--default">
+            <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--icon">
+        </a>
+        <button class="gh-menu" id="gh-menu" aria-label="メニューを開く">
+            <span class="gh-menu-text">Menu</span>
+            <span class="gh-menu-lines">
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- 全画面ナビオーバーレイ -->
+    <nav class="gnav" id="gnav">
+        <div class="gnav-bg"></div>
+        <div class="gnav-inner">
+            <div class="gnav-links">
+                <a href="index.html" class="gnav-link">
+                    <span class="gnav-link-index">01</span>
+                    <span class="gnav-link-text">Home</span>
+                    <span class="gnav-link-en">ホーム</span>
                 </a>
-                <nav class="nav">
-                    <button class="nav-toggle" aria-label="メニューを開く">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link">ホーム</a></li>
-                        <li><a href="about.html" class="nav-link">会社概要</a></li>
-                        <li><a href="service.html" class="nav-link">サービス</a></li>
-                        <li><a href="contact.html" class="nav-link active">お問い合わせ</a></li>
-                    </ul>
-                </nav>
+                <a href="about.html" class="gnav-link">
+                    <span class="gnav-link-index">02</span>
+                    <span class="gnav-link-text">About Us</span>
+                    <span class="gnav-link-en">会社概要</span>
+                </a>
+                <a href="service.html" class="gnav-link">
+                    <span class="gnav-link-index">03</span>
+                    <span class="gnav-link-text">Services</span>
+                    <span class="gnav-link-en">サービス</span>
+                </a>
+                <a href="contact.html" class="gnav-link">
+                    <span class="gnav-link-index">04</span>
+                    <span class="gnav-link-text">Contact</span>
+                    <span class="gnav-link-en">お問い合わせ</span>
+                </a>
+            </div>
+            <div class="gnav-info">
+                <p>info@raim-tech.com</p>
+                <p>080-8853-4926</p>
             </div>
         </div>
-    </header>
+    </nav>
 
     <main>
-        <section class="page-hero">
+        <section class="sv-hero">
             <div class="container">
-                <div class="page-hero-content">
-                    <span class="page-label">Contact</span>
-                    <h1 class="page-title">お問い合わせ</h1>
-                </div>
+                <h1 class="sv-hero-title">Contact</h1>
+                <span class="sv-hero-sub">お問い合わせ</span>
+            </div>
+            <div class="sv-hero-scroll">
+                <span class="sv-hero-scroll-text">Scroll</span>
+                <span class="sv-hero-scroll-line"></span>
             </div>
         </section>
 
-        <section class="contact-section">
+        <section class="sv-section" data-theme="light">
             <div class="container">
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h2 class="contact-info-title">お気軽にご連絡ください</h2>
-                        <p class="contact-info-text">
-                            サービスに関するご質問、お見積もりのご依頼、その他ご相談など、
-                            お気軽にお問い合わせください。担当者より折り返しご連絡いたします。
-                        </p>
-                        <div class="contact-details">
-                            <div class="contact-detail-item">
-                                <div class="contact-detail-icon">
-                                    <i data-lucide="phone"></i>
-                                </div>
-                                <div class="contact-detail-content">
-                                    <h3>電話番号</h3>
-                                    <p>080-8853-4926</p>
-                                    <span class="contact-detail-note">受付時間: 平日 9:00 - 18:00</span>
-                                </div>
-                            </div>
-                            <div class="contact-detail-item">
-                                <div class="contact-detail-icon">
-                                    <i data-lucide="mail"></i>
-                                </div>
-                                <div class="contact-detail-content">
-                                    <h3>メールアドレス</h3>
-                                    <p>info@raim-tech.com</p>
+                <div class="sv-head">
+                    <span class="sv-num">01</span>
+                    <h2 class="sv-title-en">Get in Touch</h2>
+                    <span class="sv-title-ja">ご連絡先</span>
+                </div>
+                <div class="sv-body">
+                    <div class="sv-prose">
+                        <p class="sv-desc">サービスに関するご質問、お見積もりのご依頼、その他ご相談など、お気軽にお問い合わせください。</p>
+                        <div class="sv-contact-details">
+                            <div class="sv-contact-item">
+                                <i data-lucide="phone"></i>
+                                <div>
+                                    <span class="sv-contact-label">電話番号</span>
+                                    <span class="sv-contact-value">080-8853-4926</span>
+                                    <span class="sv-contact-note">受付時間: 平日 9:00 - 18:00</span>
                                 </div>
                             </div>
-                            <div class="contact-detail-item">
-                                <div class="contact-detail-icon">
-                                    <i data-lucide="map-pin"></i>
+                            <div class="sv-contact-item">
+                                <i data-lucide="mail"></i>
+                                <div>
+                                    <span class="sv-contact-label">メールアドレス</span>
+                                    <span class="sv-contact-value">info@raim-tech.com</span>
                                 </div>
-                                <div class="contact-detail-content">
-                                    <h3>所在地</h3>
-                                    <p>〒450-0002<br>愛知県名古屋市中村区名駅3-4-10<br>アルティメイト名駅1st 2階</p>
+                            </div>
+                            <div class="sv-contact-item">
+                                <i data-lucide="map-pin"></i>
+                                <div>
+                                    <span class="sv-contact-label">所在地</span>
+                                    <span class="sv-contact-value">愛知県名古屋市中村区名駅3-4-10 アルティメイト名駅1st 2階</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="contact-form-wrapper">
+                    <div class="sv-form-wrapper">
                         <form class="contact-form" action="#" method="POST">
                             <div class="form-group">
                                 <label for="company" class="form-label">会社名</label>

@@ -6,145 +6,166 @@
     <meta name="description" content="株式会社Raimテクノロジーズの会社概要。企業理念、会社情報、代表挨拶をご紹介します。">
     <link rel="icon" type="image/png" href="assets/new-logo/logo-icon.png">
     <title>会社概要 | 株式会社Raimテクノロジーズ</title>
-    <link rel="stylesheet" href="css/style.css?v=20260212a">
+    <link rel="stylesheet" href="css/style.css?v=20260217d">
+    <link rel="preload" href="assets/new-logo/logo-full1.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="js/lucide.min.js" defer></script>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="index.html" class="logo">
-                    <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="logo-img">
+    <div id="splash">
+        <img src="assets/new-logo/logo-full1.png" alt="" class="splash-logo">
+    </div>
+
+    <!-- フローティング要素 -->
+    <div class="gh" id="gh">
+        <a href="index.html" class="gh-logo">
+            <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--default">
+            <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--icon">
+        </a>
+        <button class="gh-menu" id="gh-menu" aria-label="メニューを開く">
+            <span class="gh-menu-text">Menu</span>
+            <span class="gh-menu-lines">
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- 全画面ナビオーバーレイ -->
+    <nav class="gnav" id="gnav">
+        <div class="gnav-bg"></div>
+        <div class="gnav-inner">
+            <div class="gnav-links">
+                <a href="index.html" class="gnav-link">
+                    <span class="gnav-link-index">01</span>
+                    <span class="gnav-link-text">Home</span>
+                    <span class="gnav-link-en">ホーム</span>
                 </a>
-                <nav class="nav">
-                    <button class="nav-toggle" aria-label="メニューを開く">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link">ホーム</a></li>
-                        <li><a href="about.html" class="nav-link active">会社概要</a></li>
-                        <li><a href="service.html" class="nav-link">サービス</a></li>
-                        <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
-                    </ul>
-                </nav>
+                <a href="about.html" class="gnav-link">
+                    <span class="gnav-link-index">02</span>
+                    <span class="gnav-link-text">About Us</span>
+                    <span class="gnav-link-en">会社概要</span>
+                </a>
+                <a href="service.html" class="gnav-link">
+                    <span class="gnav-link-index">03</span>
+                    <span class="gnav-link-text">Services</span>
+                    <span class="gnav-link-en">サービス</span>
+                </a>
+                <a href="contact.html" class="gnav-link">
+                    <span class="gnav-link-index">04</span>
+                    <span class="gnav-link-text">Contact</span>
+                    <span class="gnav-link-en">お問い合わせ</span>
+                </a>
+            </div>
+            <div class="gnav-info">
+                <p>info@raim-tech.com</p>
+                <p>080-8853-4926</p>
             </div>
         </div>
-    </header>
+    </nav>
 
     <main>
-        <section class="page-hero">
+        <section class="sv-hero">
             <div class="container">
-                <div class="page-hero-content">
-                    <span class="page-label">About Us</span>
-                    <h1 class="page-title">会社概要</h1>
-                </div>
+                <h1 class="sv-hero-title">About Us</h1>
+                <span class="sv-hero-sub">会社概要</span>
+            </div>
+            <div class="sv-hero-scroll">
+                <span class="sv-hero-scroll-text">Scroll</span>
+                <span class="sv-hero-scroll-line"></span>
             </div>
         </section>
 
-        <section class="philosophy">
+        <section class="sv-section" data-theme="light">
             <div class="container">
-                <div class="philosophy-content">
-                    <div class="philosophy-text">
-                        <span class="section-label">Philosophy</span>
-                        <h2 class="section-title">企業理念</h2>
-                        <p class="philosophy-statement">技術で未来を切り拓く</p>
-                        <p class="philosophy-description">
+                <div class="sv-head">
+                    <span class="sv-num">01</span>
+                    <h2 class="sv-title-en">Philosophy</h2>
+                    <span class="sv-title-ja">企業理念</span>
+                </div>
+                <div class="sv-body">
+                    <div class="sv-prose">
+                        <p class="sv-statement">技術で未来を切り拓く</p>
+                        <p class="sv-desc">
                             私たちは、常に最先端の技術を追求し、お客様のビジネスに革新をもたらすことを使命としています。
                             テクノロジーの力で社会課題を解決し、より良い未来の創造に貢献します。
                         </p>
                     </div>
-                    <div class="philosophy-visual">
-                        <div class="philosophy-icon">
-                            <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies">
+                    <div class="sv-visual">
+                        <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies" class="sv-visual-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sv-section" data-theme="dark">
+            <div class="container">
+                <div class="sv-head">
+                    <span class="sv-num">02</span>
+                    <h2 class="sv-title-en">Message</h2>
+                    <span class="sv-title-ja">代表挨拶</span>
+                </div>
+                <div class="sv-body sv-body--message">
+                    <div class="sv-message-photo">
+                        <img src="assets/ceo-photo.png" alt="代表取締役 高島 湊斗" class="sv-ceo-photo">
+                    </div>
+                    <div class="sv-message-text">
+                        <p>株式会社Raimテクノロジーズのホームページをご覧いただき、誠にありがとうございます。</p>
+                        <p>当社は「技術で未来を切り拓く」という理念のもと、IT・ソフトウェア開発、コンサルティング、SES事業を通じて、お客様のデジタルトランスフォーメーションを支援してまいります。</p>
+                        <p>急速に変化するIT業界において、私たちは常に最新技術のキャッチアップに努め、お客様に最適なソリューションを提供することをお約束します。</p>
+                        <p>これからも、お客様とともに成長し、社会に貢献できる企業を目指してまいります。今後とも変わらぬご支援を賜りますよう、よろしくお願い申し上げます。</p>
+                        <div class="sv-signature">
+                            <span class="sv-signature-title">代表取締役</span>
+                            <span class="sv-signature-name">高島 湊斗</span>
+                            <span class="sv-signature-en">Takashima Minato</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="message">
+        <section class="sv-section" data-theme="light">
             <div class="container">
-                <div class="message-content">
-                    <span class="section-label">Message</span>
-                    <h2 class="section-title">代表挨拶</h2>
-                    <div class="message-body">
-                        <div class="message-photo">
-                            <img src="assets/ceo-photo.png" alt="代表取締役 高島 湊斗" class="ceo-photo">
-                        </div>
-                        <div class="message-text">
-                            <p>
-                                株式会社Raimテクノロジーズのホームページをご覧いただき、誠にありがとうございます。
-                            </p>
-                            <p>
-                                当社は「技術で未来を切り拓く」という理念のもと、IT・ソフトウェア開発、コンサルティング、SES事業を通じて、
-                                お客様のデジタルトランスフォーメーションを支援してまいります。
-                            </p>
-                            <p>
-                                急速に変化するIT業界において、私たちは常に最新技術のキャッチアップに努め、
-                                お客様に最適なソリューションを提供することをお約束します。
-                            </p>
-                            <p>
-                                これからも、お客様とともに成長し、社会に貢献できる企業を目指してまいります。
-                                今後とも変わらぬご支援を賜りますよう、よろしくお願い申し上げます。
-                            </p>
-                            <div class="message-signature">
-                                <p class="signature-title">代表取締役</p>
-                                <p class="signature-name">高島 湊斗<span class="signature-name-en">Takashima Minato</span></p>
+                <div class="sv-head">
+                    <span class="sv-num">03</span>
+                    <h2 class="sv-title-en">Company</h2>
+                    <span class="sv-title-ja">会社情報</span>
+                </div>
+                <div class="sv-body sv-body--single">
+                    <div class="sv-info-table">
+                        <dl class="sv-info-list">
+                            <div class="sv-info-row">
+                                <dt>会社名</dt>
+                                <dd>株式会社Raimテクノロジーズ<br><span class="sv-info-en">Raim Technologies Inc.</span></dd>
                             </div>
-                        </div>
+                            <div class="sv-info-row">
+                                <dt>設立</dt>
+                                <dd>2025年12月5日</dd>
+                            </div>
+                            <div class="sv-info-row">
+                                <dt>代表取締役</dt>
+                                <dd>高島 湊斗</dd>
+                            </div>
+                            <div class="sv-info-row">
+                                <dt>所在地</dt>
+                                <dd>〒450-0002<br>愛知県名古屋市中村区名駅3-4-10<br>アルティメイト名駅1st 2階</dd>
+                            </div>
+                            <div class="sv-info-row">
+                                <dt>電話番号</dt>
+                                <dd>080-8853-4926</dd>
+                            </div>
+                            <div class="sv-info-row">
+                                <dt>メール</dt>
+                                <dd>info@raim-tech.com</dd>
+                            </div>
+                            <div class="sv-info-row">
+                                <dt>事業内容</dt>
+                                <dd>ソフトウェア開発事業 / ITコンサルティング事業 / SES事業</dd>
+                            </div>
+                        </dl>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="company-info">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Company</span>
-                    <h2 class="section-title">会社情報</h2>
-                </div>
-                <div class="info-table">
-                    <dl class="info-list">
-                        <div class="info-row">
-                            <dt>会社名</dt>
-                            <dd>株式会社Raimテクノロジーズ<br><span class="en">Raim Technologies Inc.</span></dd>
-                        </div>
-                        <div class="info-row">
-                            <dt>設立</dt>
-                            <dd>2025年12月5日</dd>
-                        </div>
-                        <div class="info-row">
-                            <dt>代表取締役</dt>
-                            <dd>高島 湊斗</dd>
-                        </div>
-                        <div class="info-row">
-                            <dt>所在地</dt>
-                            <dd>〒450-0002<br>愛知県名古屋市中村区名駅3-4-10<br>アルティメイト名駅1st 2階</dd>
-                        </div>
-                        <div class="info-row">
-                            <dt>電話番号</dt>
-                            <dd>080-8853-4926</dd>
-                        </div>
-                        <div class="info-row">
-                            <dt>メール</dt>
-                            <dd>info@raim-tech.com</dd>
-                        </div>
-                        <div class="info-row">
-                            <dt>事業内容</dt>
-                            <dd>
-                                <ul class="business-list">
-                                    <li>ソフトウェア開発事業</li>
-                                    <li>ITコンサルティング事業</li>
-                                    <li>SES事業</li>
-                                </ul>
-                            </dd>
-                        </div>
-                    </dl>
                 </div>
             </div>
         </section>
