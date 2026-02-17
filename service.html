@@ -6,246 +6,132 @@
     <meta name="description" content="株式会社Raimテクノロジーズのサービス紹介。ソフトウェア開発、ITコンサルティング、SES事業の詳細と実績をご紹介します。">
     <link rel="icon" type="image/png" href="assets/new-logo/logo-icon.png">
     <title>サービス | 株式会社Raimテクノロジーズ</title>
-    <link rel="stylesheet" href="css/style.css?v=20260212a">
+    <link rel="stylesheet" href="css/style.css?v=20260217c">
+    <link rel="preload" href="assets/new-logo/logo-full1.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="js/lucide.min.js" defer></script>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="index.html" class="logo">
-                    <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="logo-img">
+    <div id="splash">
+        <img src="assets/new-logo/logo-full1.png" alt="" class="splash-logo">
+    </div>
+
+    <!-- フローティング要素 -->
+    <div class="gh" id="gh">
+        <a href="index.html" class="gh-logo">
+            <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--default">
+            <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--icon">
+        </a>
+        <button class="gh-menu" id="gh-menu" aria-label="メニューを開く">
+            <span class="gh-menu-text">Menu</span>
+            <span class="gh-menu-lines">
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- 全画面ナビオーバーレイ -->
+    <nav class="gnav" id="gnav">
+        <div class="gnav-bg"></div>
+        <div class="gnav-inner">
+            <div class="gnav-links">
+                <a href="index.html" class="gnav-link">
+                    <span class="gnav-link-index">01</span>
+                    <span class="gnav-link-text">Home</span>
+                    <span class="gnav-link-en">ホーム</span>
                 </a>
-                <nav class="nav">
-                    <button class="nav-toggle" aria-label="メニューを開く">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link">ホーム</a></li>
-                        <li><a href="about.html" class="nav-link">会社概要</a></li>
-                        <li><a href="service.html" class="nav-link active">サービス</a></li>
-                        <li><a href="contact.html" class="nav-link">お問い合わせ</a></li>
-                    </ul>
-                </nav>
+                <a href="about.html" class="gnav-link">
+                    <span class="gnav-link-index">02</span>
+                    <span class="gnav-link-text">About Us</span>
+                    <span class="gnav-link-en">会社概要</span>
+                </a>
+                <a href="service.html" class="gnav-link">
+                    <span class="gnav-link-index">03</span>
+                    <span class="gnav-link-text">Services</span>
+                    <span class="gnav-link-en">サービス</span>
+                </a>
+                <a href="contact.html" class="gnav-link">
+                    <span class="gnav-link-index">04</span>
+                    <span class="gnav-link-text">Contact</span>
+                    <span class="gnav-link-en">お問い合わせ</span>
+                </a>
+            </div>
+            <div class="gnav-info">
+                <p>info@raim-tech.com</p>
+                <p>080-8853-4926</p>
             </div>
         </div>
-    </header>
+    </nav>
 
     <main>
-        <section class="page-hero">
+        <section class="sv-hero">
             <div class="container">
-                <div class="page-hero-content">
-                    <span class="page-label">Services</span>
-                    <h1 class="page-title">サービス</h1>
-                </div>
+                <h1 class="sv-hero-title">Our Services</h1>
+                <span class="sv-hero-sub">事業内容</span>
+            </div>
+            <div class="sv-hero-scroll">
+                <span class="sv-hero-scroll-text">Scroll</span>
+                <span class="sv-hero-scroll-line"></span>
             </div>
         </section>
 
-        <section class="services-detail">
+        <section class="sv-section" data-theme="light" id="development">
             <div class="container">
-                <div class="service-detail-item" id="development">
-                    <div class="service-detail-header">
-                        <span class="service-detail-number">01</span>
-                        <h2 class="service-detail-title">ソフトウェア開発</h2>
-                    </div>
-                    <div class="service-detail-content">
-                        <p class="service-detail-description">
-                            お客様のビジネス課題を解決するため、最適なシステム・アプリケーションの企画・設計・開発・運用保守までワンストップで提供します。
-                            最新の技術スタックを活用し、スケーラブルで保守性の高いソリューションを構築します。
-                        </p>
-                        <div class="service-detail-features">
-                            <h3>提供サービス</h3>
-                            <ul class="service-features-list">
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="monitor-smartphone"></i>
-                                    </span>
-                                    <div>
-                                        <strong>Webアプリケーション開発</strong>
-                                        <p>React、Vue.js、Next.jsなどモダンなフレームワークを活用したWebアプリケーションの開発</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="smartphone"></i>
-                                    </span>
-                                    <div>
-                                        <strong>モバイルアプリ開発</strong>
-                                        <p>iOS/Android向けネイティブアプリ、クロスプラットフォームアプリの開発</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="server-cog"></i>
-                                    </span>
-                                    <div>
-                                        <strong>業務システム開発</strong>
-                                        <p>基幹システム、ERPシステム、CRMなど企業向け業務システムの開発</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="cloud-cog"></i>
-                                    </span>
-                                    <div>
-                                        <strong>クラウドインフラ構築</strong>
-                                        <p>AWS、GCP、Azureを活用したクラウドインフラの設計・構築・運用</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="sv-head">
+                    <span class="sv-num">01</span>
+                    <h2 class="sv-title-en">Software Development</h2>
+                    <span class="sv-title-ja">ソフトウェア開発</span>
                 </div>
-
-                <div class="service-detail-item" id="consulting">
-                    <div class="service-detail-header">
-                        <span class="service-detail-number">02</span>
-                        <h2 class="service-detail-title">ITコンサルティング</h2>
-                    </div>
-                    <div class="service-detail-content">
-                        <p class="service-detail-description">
-                            デジタル時代における企業の競争力強化を支援します。
-                            DX戦略の策定から実行支援まで、お客様に寄り添いながら最適なソリューションを提案します。
-                        </p>
-                        <div class="service-detail-features">
-                            <h3>提供サービス</h3>
-                            <ul class="service-features-list">
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="map"></i>
-                                    </span>
-                                    <div>
-                                        <strong>DX戦略策定支援</strong>
-                                        <p>デジタルトランスフォーメーションのロードマップ策定と実行支援</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="bar-chart-3"></i>
-                                    </span>
-                                    <div>
-                                        <strong>IT投資最適化</strong>
-                                        <p>システム投資の効果測定と最適化提案</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="file-cog"></i>
-                                    </span>
-                                    <div>
-                                        <strong>システム企画・要件定義</strong>
-                                        <p>業務分析に基づくシステム要件の策定とプロジェクト計画</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="service-detail-item" id="ses">
-                    <div class="service-detail-header">
-                        <span class="service-detail-number">03</span>
-                        <h2 class="service-detail-title">SES事業</h2>
-                    </div>
-                    <div class="service-detail-content">
-                        <p class="service-detail-description">
-                            お客様のプロジェクトに最適なエンジニアを派遣し、開発力の強化を支援します。
-                            様々なスキルセットを持つエンジニアが、プロジェクトの成功に貢献します。
-                        </p>
-                        <div class="service-detail-features">
-                            <h3>提供サービス</h3>
-                            <ul class="service-features-list">
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="user-cog"></i>
-                                    </span>
-                                    <div>
-                                        <strong>エンジニア派遣</strong>
-                                        <p>プロジェクトに必要なスキルを持つエンジニアの派遣</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="users"></i>
-                                    </span>
-                                    <div>
-                                        <strong>チーム派遣</strong>
-                                        <p>プロジェクトマネージャーを含むチーム単位での支援</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="feature-icon">
-                                        <i data-lucide="workflow"></i>
-                                    </span>
-                                    <div>
-                                        <strong>対応技術領域</strong>
-                                        <p>フロントエンド、バックエンド、インフラ、モバイルなど幅広い技術領域に対応</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="sv-body">
+                    <p class="sv-desc">お客様のビジネス課題を解決するため、最適なシステム・アプリケーションの企画・設計・開発・運用保守までワンストップで提供します。最新の技術スタックを活用し、スケーラブルで保守性の高いソリューションを構築します。</p>
+                    <div class="sv-features">
+                        <div class="sv-feat"><i data-lucide="monitor-smartphone"></i><span>Webアプリケーション開発</span></div>
+                        <div class="sv-feat"><i data-lucide="smartphone"></i><span>モバイルアプリ開発</span></div>
+                        <div class="sv-feat"><i data-lucide="server-cog"></i><span>業務システム開発</span></div>
+                        <div class="sv-feat"><i data-lucide="cloud-cog"></i><span>クラウドインフラ構築</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 実績紹介セクション（デザイン参考用にコメントアウト）
-        <section class="works">
+        <section class="sv-section" data-theme="dark" id="consulting">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">Works</span>
-                    <h2 class="section-title">実績紹介</h2>
+                <div class="sv-head">
+                    <span class="sv-num">02</span>
+                    <h2 class="sv-title-en">IT Consulting</h2>
+                    <span class="sv-title-ja">ITコンサルティング</span>
                 </div>
-                <div class="works-grid">
-                    <div class="work-card">
-                        <div class="work-category">Webアプリケーション</div>
-                        <h3 class="work-title">大手小売業向け在庫管理システム</h3>
-                        <p class="work-description">
-                            リアルタイム在庫管理と需要予測AIを組み合わせた次世代在庫管理システムを開発。
-                            在庫回転率30%向上を実現。
-                        </p>
-                        <div class="work-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>AWS</span>
-                            <span>Python</span>
-                        </div>
-                    </div>
-                    <div class="work-card">
-                        <div class="work-category">モバイルアプリ</div>
-                        <h3 class="work-title">ヘルスケアアプリ開発</h3>
-                        <p class="work-description">
-                            ウェアラブルデバイスと連携した健康管理アプリを開発。
-                            ユーザーの健康データを可視化し、生活習慣改善を支援。
-                        </p>
-                        <div class="work-tech">
-                            <span>Flutter</span>
-                            <span>Firebase</span>
-                            <span>HealthKit</span>
-                        </div>
-                    </div>
-                    <div class="work-card">
-                        <div class="work-category">コンサルティング</div>
-                        <h3 class="work-title">製造業DX戦略策定</h3>
-                        <p class="work-description">
-                            老舗製造業のDX戦略を策定。IoTを活用した生産管理システムの導入を支援し、
-                            生産効率20%向上を達成。
-                        </p>
-                        <div class="work-tech">
-                            <span>DX戦略</span>
-                            <span>IoT</span>
-                            <span>業務改善</span>
-                        </div>
+                <div class="sv-body">
+                    <p class="sv-desc">デジタル時代における企業の競争力強化を支援します。DX戦略の策定から実行支援まで、お客様に寄り添いながら最適なソリューションを提案します。</p>
+                    <div class="sv-features">
+                        <div class="sv-feat"><i data-lucide="map"></i><span>DX戦略策定支援</span></div>
+                        <div class="sv-feat"><i data-lucide="bar-chart-3"></i><span>IT投資最適化</span></div>
+                        <div class="sv-feat"><i data-lucide="file-cog"></i><span>システム企画・要件定義</span></div>
                     </div>
                 </div>
             </div>
         </section>
-        -->
+
+        <section class="sv-section" data-theme="light" id="ses">
+            <div class="container">
+                <div class="sv-head">
+                    <span class="sv-num">03</span>
+                    <h2 class="sv-title-en">SES</h2>
+                    <span class="sv-title-ja">SES事業</span>
+                </div>
+                <div class="sv-body">
+                    <p class="sv-desc">お客様のプロジェクトに最適なエンジニアを派遣し、開発力の強化を支援します。様々なスキルセットを持つエンジニアが、プロジェクトの成功に貢献します。</p>
+                    <div class="sv-features">
+                        <div class="sv-feat"><i data-lucide="user-cog"></i><span>エンジニア派遣</span></div>
+                        <div class="sv-feat"><i data-lucide="users"></i><span>チーム派遣</span></div>
+                        <div class="sv-feat"><i data-lucide="workflow"></i><span>対応技術領域</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="cta">
             <div class="container">
