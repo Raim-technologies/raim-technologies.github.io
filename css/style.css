@@ -882,148 +882,139 @@ section {
 }
 
 /* ========================================
-   About — Philosophy
+   About — Shared sv-section components
    ======================================== */
-.philosophy {
-    background: var(--ground);
-}
 
-.philosophy-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
-    align-items: center;
-}
-
-.philosophy-statement {
+/* Statement (philosophy) */
+.sv-statement {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     font-weight: 700;
-    color: var(--ink);
-    margin: var(--space-5) 0;
     letter-spacing: -0.01em;
-}
-
-.philosophy-description {
-    font-size: 0.95rem;
-    color: var(--ink-2);
-    line-height: 2;
-}
-
-.philosophy-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.philosophy-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.philosophy-icon img {
-    width: 140px;
-    height: auto;
-}
-
-.philosophy-icon svg {
-    width: 64px;
-    height: 64px;
-    stroke: var(--ink-4);
-    stroke-width: 1.5;
-}
-
-/* ========================================
-   About — CEO Message
-   ======================================== */
-.message {
-    background: var(--ground-alt);
-}
-
-.message-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.message-body {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: var(--space-7);
-    margin-top: var(--space-6);
-    align-items: start;
-}
-
-.message-photo {
-    position: static;
-}
-
-.ceo-photo {
-    width: 100%;
-    border: 1px solid var(--rule);
-    border-radius: 0;
-}
-
-.message-text {
-    margin-top: 0;
-}
-
-.message-text p {
-    font-size: 0.95rem;
-    line-height: 2;
-    color: var(--ink-2);
     margin-bottom: var(--space-5);
 }
 
-.message-signature {
-    margin-top: var(--space-6);
-    text-align: right;
+/* Visual block (logo in philosophy) */
+.sv-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.signature-title {
+.sv-visual-img {
+    width: 120px;
+    height: auto;
+    opacity: 0.12;
+}
+
+/* Prose block — generic text column */
+.sv-prose {
+    opacity: 0;
+}
+
+.sv-section.in-view .sv-prose {
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
+}
+
+/* Message (CEO) body */
+.sv-body--message {
+    grid-template-columns: 180px 1fr;
+    gap: var(--space-7);
+    align-items: start;
+}
+
+.sv-message-photo {
+    opacity: 0;
+}
+
+.sv-section.in-view .sv-message-photo {
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
+}
+
+.sv-ceo-photo {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sv-message-text {
+    opacity: 0;
+}
+
+.sv-section.in-view .sv-message-text {
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.4s;
+}
+
+.sv-message-text p {
+    font-size: 0.95rem;
+    line-height: 2;
+    margin-bottom: var(--space-5);
+}
+
+.sv-section[data-theme="light"] .sv-message-text p {
+    color: var(--ink-2);
+}
+
+.sv-section[data-theme="dark"] .sv-message-text p {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.sv-signature {
+    margin-top: var(--space-6);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
+}
+
+.sv-signature-title {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--ink-4);
-    margin-bottom: var(--space-2);
+    color: rgba(255, 255, 255, 0.35);
     letter-spacing: 0.05em;
 }
 
-.signature-name {
+.sv-signature-name {
     font-size: 1.15rem;
     font-weight: 600;
 }
 
-.signature-name-en {
-    display: block;
+.sv-signature-en {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 400;
-    color: var(--ink-4);
-    margin-top: var(--space-1);
+    color: rgba(255, 255, 255, 0.35);
 }
 
-/* ========================================
-   About — Company Info
-   ======================================== */
-.company-info {
-    background: var(--ground);
+/* Single-column body (company info) */
+.sv-body--single {
+    grid-template-columns: 1fr;
 }
 
-.info-table {
+/* Info table */
+.sv-info-table {
     max-width: 800px;
-    margin: 0 auto;
+    opacity: 0;
 }
 
-.info-list {
+.sv-section.in-view .sv-info-table {
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
+}
+
+.sv-info-list {
     border-top: 1px solid var(--rule);
 }
 
-.info-row {
+.sv-info-row {
     display: grid;
     grid-template-columns: 160px 1fr;
     border-bottom: 1px solid var(--rule);
 }
 
-.info-row dt {
+.sv-info-row dt {
     padding: var(--space-5) var(--space-4);
     background: var(--ground-alt);
     font-family: var(--font-mono);
@@ -1033,13 +1024,13 @@ section {
     letter-spacing: 0.02em;
 }
 
-.info-row dd {
+.sv-info-row dd {
     padding: var(--space-5) var(--space-4);
     font-size: 0.95rem;
     color: var(--ink-2);
 }
 
-.info-row dd .en {
+.sv-info-en {
     display: block;
     font-family: var(--font-mono);
     font-size: 0.8rem;
@@ -1047,26 +1038,67 @@ section {
     margin-top: var(--space-1);
 }
 
-.business-list li {
-    position: relative;
-    padding-left: var(--space-4);
-    margin-bottom: var(--space-2);
+/* ========================================
+   Contact — sv-section components
+   ======================================== */
+.sv-contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+}
+
+.sv-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+}
+
+.sv-contact-item > svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: var(--ink-4);
+    stroke-width: 1.5;
+    margin-top: 2px;
+}
+
+.sv-contact-item > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.sv-contact-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-4);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.sv-contact-value {
     font-size: 0.95rem;
+    color: var(--ink-2);
 }
 
-.business-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 4px;
-    height: 4px;
-    background: var(--ink-4);
-    border-radius: 0;
+.sv-contact-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-4);
 }
 
-.business-list li:last-child {
-    margin-bottom: 0;
+/* Form wrapper inside sv-body */
+.sv-form-wrapper {
+    background: var(--ground-alt);
+    padding: var(--space-6);
+    border: 1px solid var(--rule);
+    opacity: 0;
+}
+
+.sv-section.in-view .sv-form-wrapper {
+    opacity: 1;
+    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.4s;
 }
 
 /* ========================================
@@ -1458,90 +1490,8 @@ section {
 }
 
 /* ========================================
-   Contact Page
+   Contact Page — Form
    ======================================== */
-.contact-section {
-    background: var(--ground);
-}
-
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: var(--space-8);
-}
-
-.contact-info-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: var(--space-3);
-    letter-spacing: -0.02em;
-}
-
-.contact-info-text {
-    font-size: 0.9rem;
-    color: var(--ink-2);
-    line-height: 1.8;
-    margin-bottom: var(--space-6);
-}
-
-.contact-details {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-}
-
-.contact-detail-item {
-    display: flex;
-    gap: var(--space-4);
-}
-
-.contact-detail-icon {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border-radius: 0;
-}
-
-.contact-detail-icon svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--ink-4);
-    stroke-width: 1.5;
-}
-
-.contact-detail-content h3 {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--ink-4);
-    margin-bottom: var(--space-1);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.contact-detail-content p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--ink-2);
-}
-
-.contact-detail-note {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--ink-4);
-}
-
-/* Contact Form */
-.contact-form-wrapper {
-    background: var(--ground-alt);
-    padding: var(--space-6);
-    border: 1px solid var(--rule);
-    border-radius: 0;
-}
 
 .form-group {
     margin-bottom: var(--space-5);
@@ -1656,23 +1606,6 @@ html:has(.sv-hero) {
     scroll-snap-align: start;
 }
 
-/* Full-height sections for about / contact */
-.philosophy,
-.message,
-.company-info,
-.contact-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    scroll-snap-align: start;
-}
-
-.philosophy > .container,
-.message > .container,
-.company-info > .container,
-.contact-section > .container {
-    width: 100%;
-}
 
 /* ========================================
    Responsive
@@ -1688,17 +1621,8 @@ html:has(.sv-hero) {
         grid-template-columns: 1fr;
     }
 
-    .philosophy-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .philosophy-visual {
-        order: -1;
-    }
-
-    .contact-wrapper {
-        grid-template-columns: 1fr;
+    .sv-body--message {
+        grid-template-columns: 140px 1fr;
     }
 }
 
@@ -1721,17 +1645,6 @@ html:has(.sv-hero) {
         grid-template-columns: 1fr;
     }
 
-    .message-body {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-    }
-
-    .message-photo {
-        position: static;
-        max-width: 160px;
-        margin: 0 auto;
-    }
-
     .hero-buttons {
         flex-direction: column;
     }
@@ -1750,28 +1663,8 @@ html:has(.sv-hero) {
         gap: var(--space-4);
     }
 
-    .info-row {
-        grid-template-columns: 1fr;
-    }
-
-    .info-row dt {
-        padding: var(--space-4);
-    }
-
-    .info-row dd {
-        padding: var(--space-4);
-    }
-
     html:has(.sv-hero) {
         scroll-snap-type: none;
-    }
-
-    .philosophy,
-    .message,
-    .company-info,
-    .contact-section {
-        min-height: auto;
-        display: block;
     }
 
     .sv-section {
@@ -1792,16 +1685,33 @@ html:has(.sv-hero) {
         gap: var(--space-6);
     }
 
-    .contact-form-wrapper {
+    .sv-body--message {
+        grid-template-columns: 1fr;
+    }
+
+    .sv-message-photo {
+        max-width: 160px;
+        margin: 0 auto;
+    }
+
+    .sv-info-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sv-info-row dt {
+        padding: var(--space-4);
+    }
+
+    .sv-info-row dd {
+        padding: var(--space-4);
+    }
+
+    .sv-form-wrapper {
         padding: var(--space-5);
     }
 
     .sp-hide {
         display: none;
-    }
-
-    .page-hero {
-        padding: 80px 0 var(--space-7);
     }
 }
 
