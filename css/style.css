@@ -106,6 +106,10 @@
     }
 }
 
+.no-splash #splash {
+    display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
     #splash {
         display: none;
