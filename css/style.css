@@ -226,9 +226,12 @@ button {
     opacity: 1;
 }
 
+/* ダークセクション上では下地の紺(#111827)より明確に暗くして
+   輝度差で境界を立たせる */
 .gh.gh--light::before {
-    background: rgba(17, 24, 39, 0.75);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
+    background: rgba(4, 7, 15, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 .gh.gnav-open::before {
