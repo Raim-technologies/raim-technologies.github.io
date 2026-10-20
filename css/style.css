@@ -57,14 +57,14 @@
     align-items: center;
     justify-content: center;
     will-change: opacity;
-    animation: splash-exit 0.4s cubic-bezier(0.4, 0, 0.2, 1) 2.4s forwards;
+    animation: splash-exit 0.35s cubic-bezier(0.4, 0, 0.2, 1) 1.6s forwards;
 }
 
 .splash-logo {
     height: 72px;
     width: auto;
     will-change: clip-path, transform, opacity;
-    animation: splash-anim 2s ease 0.2s both;
+    animation: splash-anim 1.4s ease 0.1s both;
 }
 
 @keyframes splash-anim {
@@ -114,6 +114,10 @@
 @media (prefers-reduced-motion: reduce) {
     #splash {
         display: none;
+    }
+
+    html {
+        scroll-behavior: auto;
     }
 }
 
@@ -292,7 +296,7 @@ button {
     z-index: 10000;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0s 0.8s;
+    transition: opacity 0s 0.55s;
 }
 
 .gnav.open {
@@ -304,7 +308,7 @@ button {
 .gnav.close {
     pointer-events: none;
     opacity: 1;
-    transition: opacity 0s 0.8s;
+    transition: opacity 0s 0.55s;
 }
 
 /* Background wipe */
@@ -314,7 +318,7 @@ button {
     background: var(--ink);
     transform: scaleX(0);
     transform-origin: right center;
-    transition: transform 0.7s cubic-bezier(1, 0, 0, 1);
+    transition: transform 0.5s cubic-bezier(1, 0, 0, 1);
 }
 
 .gnav.open .gnav-bg {
@@ -357,7 +361,7 @@ button {
     overflow: hidden;
     transform: translateY(100%);
     opacity: 0;
-    transition: transform 0.5s ease, opacity 0.5s ease, background 0.3s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease, background 0.3s ease;
 }
 
 .gnav.open .gnav-link {
@@ -365,10 +369,10 @@ button {
     opacity: 1;
 }
 
-.gnav.open .gnav-link:nth-child(1) { transition-delay: 0.3s, 0.3s, 0s; }
-.gnav.open .gnav-link:nth-child(2) { transition-delay: 0.33s, 0.33s, 0s; }
-.gnav.open .gnav-link:nth-child(3) { transition-delay: 0.36s, 0.36s, 0s; }
-.gnav.open .gnav-link:nth-child(4) { transition-delay: 0.39s, 0.39s, 0s; }
+.gnav.open .gnav-link:nth-child(1) { transition-delay: 0.15s, 0.15s, 0s; }
+.gnav.open .gnav-link:nth-child(2) { transition-delay: 0.18s, 0.18s, 0s; }
+.gnav.open .gnav-link:nth-child(3) { transition-delay: 0.21s, 0.21s, 0s; }
+.gnav.open .gnav-link:nth-child(4) { transition-delay: 0.24s, 0.24s, 0s; }
 
 .gnav.close .gnav-link {
     transform: translateY(100%);
@@ -393,6 +397,15 @@ button {
 .gnav-link:hover::before {
     transform: scaleY(1);
     transform-origin: top center;
+}
+
+/* Current page indicator */
+.gnav-link[aria-current="page"]::before {
+    transform: scaleY(1);
+}
+
+.gnav-link[aria-current="page"] .gnav-link-index {
+    opacity: 1;
 }
 
 .gnav-link:hover {
@@ -429,7 +442,7 @@ button {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
 }
 
 .gnav.open .gnav-info {
@@ -448,6 +461,10 @@ button {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.4);
     line-height: 1.8;
+}
+
+.gnav-info a:hover {
+    color: #ffffff;
 }
 
 /* ========================================
@@ -1071,12 +1088,9 @@ section {
    ======================================== */
 .sv-hero {
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
     background: var(--ink);
     color: #ffffff;
-    padding: 0;
+    padding: 180px 0 90px;
 }
 
 .sv-hero .container {
@@ -1099,58 +1113,10 @@ section {
     margin-top: var(--space-4);
 }
 
-.sv-hero-scroll {
-    position: absolute;
-    bottom: var(--space-7);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-3);
-}
-
-.sv-hero-scroll-text {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.35);
-}
-
-.sv-hero-scroll-line {
-    display: block;
-    width: 1px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.sv-hero-scroll-line::after {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--signal);
-    animation: sv-scroll-line 1.8s cubic-bezier(.4, 0, .2, 1) infinite;
-}
-
-@keyframes sv-scroll-line {
-    0%   { top: -100%; }
-    50%  { top: 0; }
-    100% { top: 100%; }
-}
-
 /* ========================================
    Service Page — Sections
    ======================================== */
 .sv-section {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
     padding: var(--space-9) 0;
 }
 
@@ -1441,6 +1407,7 @@ section {
 }
 
 .checkbox-label {
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--space-3);
@@ -1449,8 +1416,17 @@ section {
     color: var(--ink-2);
 }
 
+/* Visually hidden but still focusable for keyboard users */
 .checkbox-label input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.checkbox-label input:focus-visible + .checkbox-custom {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
 }
 
 .checkbox-custom {
@@ -1480,19 +1456,52 @@ section {
     transform: rotate(45deg);
 }
 
-/* ========================================
-   Scroll Snap (subpages with sv-hero)
-   ======================================== */
-html:has(.sv-hero) {
-    scroll-snap-type: y proximity;
+/* Inline form status (replaces alert dialogs) */
+.form-status {
+    display: none;
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    border: 1px solid;
 }
 
-.sv-hero,
-.sv-section,
-.cta {
-    scroll-snap-align: start;
+.form-status.is-success {
+    display: block;
+    color: #15803d;
+    border-color: #86efac;
+    background: #f0fdf4;
 }
 
+.form-status.is-error {
+    display: block;
+    color: #b91c1c;
+    border-color: #fca5a5;
+    background: #fef2f2;
+}
+
+/* Clickable contact details */
+a.sv-contact-value {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-strong);
+}
+
+a.sv-contact-value:hover {
+    color: var(--signal);
+    text-decoration-color: var(--signal);
+}
+
+.sv-info-row dd a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-strong);
+}
+
+.sv-info-row dd a:hover {
+    color: var(--signal);
+    text-decoration-color: var(--signal);
+}
 
 /* ========================================
    Responsive
@@ -1550,12 +1559,11 @@ html:has(.sv-hero) {
         gap: var(--space-4);
     }
 
-    html:has(.sv-hero) {
-        scroll-snap-type: none;
+    .sv-hero {
+        padding: 130px 0 56px;
     }
 
     .sv-section {
-        min-height: auto;
         padding: var(--space-8) 0;
     }
 

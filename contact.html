@@ -6,7 +6,7 @@
     <meta name="description" content="株式会社Raimテクノロジーズへのお問い合わせ。ご質問、ご相談はこちらからお気軽にどうぞ。">
     <link rel="icon" type="image/png" href="assets/new-logo/logo-icon.png">
     <title>お問い合わせ | 株式会社Raimテクノロジーズ</title>
-    <link rel="stylesheet" href="css/style.css?v=20261020a">
+    <link rel="stylesheet" href="css/style.css?v=20261020b">
     <script>try{if(sessionStorage.getItem("splashShown")){document.documentElement.classList.add("no-splash")}else{sessionStorage.setItem("splashShown","1")}}catch(e){}</script>
     <link rel="preload" href="assets/new-logo/logo-full1.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,8 +61,8 @@
                 </a>
             </div>
             <div class="gnav-info">
-                <p>info@raim-tech.com</p>
-                <p>090-4992-4764</p>
+                <p><a href="mailto:info@raim-tech.com">info@raim-tech.com</a></p>
+                <p><a href="tel:09049924764">090-4992-4764</a></p>
             </div>
         </div>
     </nav>
@@ -72,10 +72,6 @@
             <div class="container">
                 <h1 class="sv-hero-title">Contact</h1>
                 <span class="sv-hero-sub">お問い合わせ</span>
-            </div>
-            <div class="sv-hero-scroll">
-                <span class="sv-hero-scroll-text">Scroll</span>
-                <span class="sv-hero-scroll-line"></span>
             </div>
         </section>
 
@@ -94,7 +90,7 @@
                                 <i data-lucide="phone"></i>
                                 <div>
                                     <span class="sv-contact-label">電話番号</span>
-                                    <span class="sv-contact-value">090-4992-4764</span>
+                                    <a href="tel:09049924764" class="sv-contact-value">090-4992-4764</a>
                                     <span class="sv-contact-note">受付時間: 平日 9:00 - 18:00</span>
                                 </div>
                             </div>
@@ -102,7 +98,7 @@
                                 <i data-lucide="mail"></i>
                                 <div>
                                     <span class="sv-contact-label">メールアドレス</span>
-                                    <span class="sv-contact-value">info@raim-tech.com</span>
+                                    <a href="mailto:info@raim-tech.com" class="sv-contact-value">info@raim-tech.com</a>
                                 </div>
                             </div>
                             <div class="sv-contact-item">
@@ -149,6 +145,7 @@
                             <div class="form-submit">
                                 <button type="submit" class="btn btn-primary btn-large btn-full">送信する</button>
                             </div>
+                            <p class="form-status" role="status" aria-live="polite"></p>
                         </form>
                     </div>
                 </div>
