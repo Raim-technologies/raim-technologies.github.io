@@ -79,13 +79,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Header backdrop once the page is scrolled
-    if (gh) {
-        var onScroll = function () {
-            gh.classList.toggle('gh--scrolled', window.scrollY > 10);
-        };
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
+    // Header backdrop + back-to-top visibility while scrolling
+    var toTop = document.getElementById('to-top');
+    var onScroll = function () {
+        if (gh) gh.classList.toggle('gh--scrolled', window.scrollY > 10);
+        if (toTop) toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.5);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (toTop) {
+        toTop.addEventListener('click', function () {
+            // html の scroll-behavior に従う(reduced-motion 時は即時ジャンプ)
+            window.scrollTo({ top: 0 });
+        });
     }
 
     // Copyright year
