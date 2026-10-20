@@ -1178,21 +1178,22 @@ section {
 
 .sv-contact-label {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--ink-4);
+    font-size: 0.85rem;
+    color: var(--ink-2);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
 .sv-contact-value {
-    font-size: 0.95rem;
-    color: var(--ink-2);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink);
 }
 
 .sv-contact-note {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--ink-4);
+    font-size: 0.8rem;
+    color: var(--ink-3);
 }
 
 /* Form wrapper inside sv-body */
