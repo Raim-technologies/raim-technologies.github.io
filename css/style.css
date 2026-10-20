@@ -1214,11 +1214,59 @@ section {
     margin-top: var(--space-4);
 }
 
+/* In-page index shown in the hero */
+.sv-hero-index {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sv-index-link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.sv-index-link:hover {
+    color: #ffffff;
+}
+
+.sv-index-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--signal);
+}
+
+.sv-index-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.sv-index-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin-left: auto;
+    transition: transform var(--ease), color var(--ease);
+}
+
+.sv-index-link:hover .sv-index-arrow {
+    color: var(--signal);
+    transform: translateY(2px);
+}
+
 /* ========================================
    Service Page — Sections
    ======================================== */
 .sv-section {
     padding: var(--space-9) 0;
+    /* アンカー移動時に固定ヘッダーと重ならない余白 */
+    scroll-margin-top: 48px;
 }
 
 .sv-section[data-theme="light"] {
@@ -1686,6 +1734,11 @@ a.sv-contact-value:hover {
 
     .sv-hero {
         padding: 130px 0 56px;
+    }
+
+    .sv-hero-index {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .sv-section {
