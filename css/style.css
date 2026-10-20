@@ -1260,9 +1260,23 @@ section {
     color: var(--signal);
 }
 
+.sv-index-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .sv-index-text {
     font-size: clamp(1.1rem, 1.8vw, 1.3rem);
     font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.sv-index-ja {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.05em;
 }
 
 .sv-index-arrow {
