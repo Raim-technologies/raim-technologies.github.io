@@ -294,7 +294,7 @@ button {
 .gh-nav-link {
     position: relative;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
