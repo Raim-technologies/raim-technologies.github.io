@@ -33,6 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
             ghMenu.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
 
+            // メニュー内にフォーカスが残っていたらボタンへ戻す
+            if (gnav.contains(document.activeElement)) {
+                ghMenu.focus();
+            }
+
             // Remove 'close' after transition, then fade logo in
             setTimeout(function () {
                 gnav.classList.remove('close');
@@ -58,9 +63,39 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Close on Esc
+        // Close on Esc / trap Tab focus inside the open menu
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && gnav.classList.contains('open')) {
+            if (!gnav.classList.contains('open')) return;
+
+            if (e.key === 'Escape') {
+                closeNav();
+                return;
+            }
+
+            if (e.key === 'Tab') {
+                var focusables = [ghMenu].concat(
+                    Array.prototype.slice.call(gnav.querySelectorAll('a[href]'))
+                );
+                var first = focusables[0];
+                var last = focusables[focusables.length - 1];
+                var index = focusables.indexOf(document.activeElement);
+
+                if (index === -1) {
+                    e.preventDefault();
+                    first.focus();
+                } else if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
+        // Close on background click (anywhere that isn't a link)
+        gnav.addEventListener('click', function (e) {
+            if (!e.target.closest('a')) {
                 closeNav();
             }
         });

@@ -400,19 +400,23 @@ button {
     z-index: 10000;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0s 0.55s;
+    /* visibility: 閉じている間はTabキーでリンクに到達させない */
+    visibility: hidden;
+    transition: opacity 0s 0.55s, visibility 0s 0.55s;
 }
 
 .gnav.open {
     pointer-events: auto;
     opacity: 1;
-    transition: opacity 0s 0s;
+    visibility: visible;
+    transition: opacity 0s 0s, visibility 0s 0s;
 }
 
 .gnav.close {
     pointer-events: none;
     opacity: 1;
-    transition: opacity 0s 0.55s;
+    visibility: visible;
+    transition: opacity 0s 0.55s, visibility 0s 0.55s;
 }
 
 /* Background wipe */
@@ -875,6 +879,17 @@ section {
 }
 
 .service-link:hover {
+    color: var(--signal);
+}
+
+/* リンクの当たり判定をカード全体に広げる */
+.service-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.service-card:hover .service-link {
     color: var(--signal);
 }
 
