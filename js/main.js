@@ -79,6 +79,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Header backdrop once the page is scrolled
+    if (gh) {
+        var onScroll = function () {
+            gh.classList.toggle('gh--scrolled', window.scrollY > 10);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    // Copyright year
+    document.querySelectorAll('.copyright-year').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+    });
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
@@ -107,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
             formStatus.classList.remove('is-success', 'is-error');
             formStatus.classList.add(type === 'success' ? 'is-success' : 'is-error');
             formStatus.textContent = message;
+            formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
 
         contactForm.addEventListener('submit', function (e) {

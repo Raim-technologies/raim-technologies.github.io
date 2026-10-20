@@ -175,6 +175,25 @@ button {
 }
 
 /* ========================================
+   Skip Link
+   ======================================== */
+.skip-link {
+    position: fixed;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 10003;
+    padding: 10px 16px;
+    background: var(--ink);
+    color: #ffffff;
+    font-size: 0.85rem;
+    transform: translateY(-250%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* ========================================
    Floating Header (.gh)
    ======================================== */
 .gh {
@@ -188,6 +207,38 @@ button {
     justify-content: space-between;
     padding: var(--space-5) var(--space-6);
     pointer-events: none;
+}
+
+/* Scrolled: translucent backdrop so content never collides with the nav */
+.gh::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gh.gh--scrolled::before {
+    opacity: 1;
+}
+
+.gh.gh--light::before {
+    background: rgba(17, 24, 39, 0.75);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.gh.gnav-open::before {
+    opacity: 0;
+}
+
+.gh-logo,
+.gh-nav,
+.gh-menu {
+    position: relative;
 }
 
 .gh-logo,
@@ -1595,12 +1646,32 @@ a.sv-contact-value:hover {
         grid-template-columns: 1fr;
     }
 
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .hero-visual {
+        justify-content: center;
+    }
+
+    .hero-visual img {
+        width: min(480px, 100%);
+    }
+
     .hero-buttons {
         flex-direction: column;
     }
 
     .btn {
         width: 100%;
+    }
+
+    /* 16px以上にしないとiOS Safariがフォーカス時に自動ズームする */
+    .form-input,
+    .form-select,
+    .form-textarea {
+        font-size: 1rem;
     }
 
     .footer-inner {
@@ -1676,18 +1747,5 @@ a.sv-contact-value:hover {
     .feature-card,
     .service-card {
         padding: var(--space-5);
-    }
-
-    .hero-inner {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-    }
-
-    .hero-visual {
-        justify-content: center;
-    }
-
-    .hero-visual img {
-        width: min(480px, 100%);
     }
 }
