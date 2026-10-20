@@ -21,9 +21,10 @@
     /* Signal — the green. Used with intent. */
     --signal: #1dbd4d;
     --signal-hover: #13a13e;
-    /* 白背景上の文字・ボタン用の深い緑(白文字と4.6:1、AA通過) */
-    --signal-deep: #15803d;
-    --signal-deep-hover: #166534;
+    /* 白背景上の文字・ボタン用の深い緑。ロゴの緑(#1dbd4d, 色相138°)と
+       同一色相・同彩度のまま暗くした色(白文字と4.6:1、AA通過) */
+    --signal-deep: #128735;
+    --signal-deep-hover: #117930;
     --signal-surface: rgba(29, 189, 77, 0.06);
 
     /* Typography */
