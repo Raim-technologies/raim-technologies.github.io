@@ -69,15 +69,15 @@ document.addEventListener('DOMContentLoaded', function () {
         gnav.querySelectorAll('.gnav-link').forEach(function (link) {
             link.addEventListener('click', closeNav);
         });
-
-        // Highlight current page in nav
-        var currentPath = location.pathname.split('/').pop() || 'index.html';
-        gnav.querySelectorAll('.gnav-link').forEach(function (link) {
-            if (link.getAttribute('href') === currentPath) {
-                link.setAttribute('aria-current', 'page');
-            }
-        });
     }
+
+    // Highlight current page in navs
+    var currentPath = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.gnav-link, .gh-nav-link').forEach(function (link) {
+        if (link.getAttribute('href') === currentPath) {
+            link.setAttribute('aria-current', 'page');
+        }
+    });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {

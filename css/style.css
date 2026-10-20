@@ -191,6 +191,7 @@ button {
 }
 
 .gh-logo,
+.gh-nav,
 .gh-menu {
     pointer-events: auto;
 }
@@ -227,6 +228,48 @@ button {
 
 .gh.gh--logo-hiding .gh-logo-img--icon {
     opacity: 0;
+}
+
+/* Inline nav (desktop) */
+.gh-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.gh-nav-link {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: var(--space-2) 0;
+    transition: color 0.3s cubic-bezier(.77, 0, .175, 1);
+}
+
+.gh-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--signal);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.3s cubic-bezier(.77, 0, .175, 1);
+}
+
+.gh-nav-link:hover::after,
+.gh-nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+.gh.gh--light .gh-nav-link {
+    color: #ffffff;
 }
 
 /* Menu button */
@@ -285,6 +328,13 @@ button {
 
 .gh.gnav-open .gh-menu-lines span:last-child {
     transform: translateY(-4px) rotate(-45deg);
+}
+
+/* Hamburger is mobile-only; the inline nav is hidden at mobile widths instead */
+@media (min-width: 769px) {
+    .gh-menu {
+        display: none;
+    }
 }
 
 /* ========================================
@@ -1529,6 +1579,10 @@ a.sv-contact-value:hover {
 
     .gh {
         padding: var(--space-4) var(--space-5);
+    }
+
+    .gh-nav {
+        display: none;
     }
 
     .gnav-inner {
