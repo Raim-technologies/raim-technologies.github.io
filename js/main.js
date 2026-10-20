@@ -159,32 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Intersection Observer for animations
-    var observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translate3d(0, 0, 0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation with staggered delays
-    var animateElements = document.querySelectorAll('.feature-card, .service-card, .work-card');
-    animateElements.forEach(function (el) {
-        var index = Array.prototype.indexOf.call(el.parentElement.children, el);
-        var delay = index * 0.1;
-        el.style.opacity = '0';
-        el.style.transform = 'translate3d(0, 30px, 0)';
-        el.style.transition = 'opacity 1.2s cubic-bezier(.075, .82, .165, 1) ' + delay + 's, transform 1.2s cubic-bezier(.075, .82, .165, 1) ' + delay + 's';
-        observer.observe(el);
-    });
-
     // Header color inversion on dark sections
     var darkSections = document.querySelectorAll('.sv-hero, .sv-section[data-theme="dark"]');
     if (darkSections.length && gh) {
@@ -229,25 +203,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         darkSections.forEach(function (section) {
             headerObserver.observe(section);
-        });
-    }
-
-    // Service page: sv-section scroll animations
-    var svSections = document.querySelectorAll('.sv-section');
-    if (svSections.length) {
-        var svObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -60px 0px'
-        });
-
-        svSections.forEach(function (section) {
-            svObserver.observe(section);
         });
     }
 });

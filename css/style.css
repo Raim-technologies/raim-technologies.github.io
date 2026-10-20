@@ -906,16 +906,6 @@ section {
     opacity: 0.12;
 }
 
-/* Prose block — generic text column */
-.sv-prose {
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-prose {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
-}
-
 /* Message (CEO) body */
 .sv-body--message {
     grid-template-columns: 180px 1fr;
@@ -923,27 +913,9 @@ section {
     align-items: start;
 }
 
-.sv-message-photo {
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-message-photo {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
-}
-
 .sv-ceo-photo {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sv-message-text {
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-message-text {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.4s;
 }
 
 .sv-message-text p {
@@ -996,12 +968,6 @@ section {
 /* Info table */
 .sv-info-table {
     max-width: 800px;
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-info-table {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
 }
 
 .sv-info-list {
@@ -1093,12 +1059,6 @@ section {
     background: var(--ground-alt);
     padding: var(--space-6);
     border: 1px solid var(--rule);
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-form-wrapper {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.4s;
 }
 
 /* ========================================
@@ -1212,7 +1172,7 @@ section {
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.04em;
-    opacity: 0;
+    opacity: 0.08;
     pointer-events: none;
     user-select: none;
 }
@@ -1232,7 +1192,6 @@ section {
     letter-spacing: -0.03em;
     line-height: 1.1;
     margin-top: calc(var(--space-4) * -1);
-    opacity: 0;
 }
 
 .sv-title-ja {
@@ -1241,7 +1200,6 @@ section {
     font-size: 0.85rem;
     letter-spacing: 0.05em;
     margin-top: var(--space-3);
-    opacity: 0;
 }
 
 .sv-section[data-theme="light"] .sv-title-ja {
@@ -1264,7 +1222,6 @@ section {
     font-size: 0.95rem;
     line-height: 2;
     max-width: 640px;
-    opacity: 0;
 }
 
 .sv-section[data-theme="light"] .sv-desc {
@@ -1292,7 +1249,6 @@ section {
     letter-spacing: -0.01em;
     cursor: default;
     transition: transform 0.3s cubic-bezier(.77, 0, .175, 1), background 0.3s ease;
-    opacity: 0;
 }
 
 .sv-feat svg {
@@ -1333,9 +1289,8 @@ section {
     transform-origin: top center;
 }
 
-.sv-section.in-view .sv-feat:hover {
+.sv-feat:hover {
     transform: translateX(8px);
-    transition: transform 0.3s cubic-bezier(.77, 0, .175, 1), background 0.3s ease;
 }
 
 .sv-section[data-theme="light"] .sv-feat:hover {
@@ -1344,79 +1299,6 @@ section {
 
 .sv-section[data-theme="dark"] .sv-feat:hover {
     background: rgba(255, 255, 255, 0.05);
-}
-
-/* ========================================
-   Service Page — Scroll Animations
-   ======================================== */
-.sv-section.in-view .sv-num {
-    opacity: 0.08;
-    transform: translateX(0);
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1),
-                transform 0.8s cubic-bezier(.075, .82, .165, 1);
-}
-
-.sv-section.in-view .sv-title-en {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.1s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.1s;
-}
-
-.sv-section.in-view .sv-title-ja {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.2s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.2s;
-}
-
-.sv-section.in-view .sv-desc {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
-}
-
-.sv-section.in-view .sv-feat {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger feat items via nth-child */
-.sv-section.in-view .sv-feat:nth-child(1) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s,
-                background 0.3s ease;
-}
-.sv-section.in-view .sv-feat:nth-child(2) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.36s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.36s,
-                background 0.3s ease;
-}
-.sv-section.in-view .sv-feat:nth-child(3) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.42s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.42s,
-                background 0.3s ease;
-}
-.sv-section.in-view .sv-feat:nth-child(4) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.48s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.48s,
-                background 0.3s ease;
-}
-
-/* Pre-animation states (before in-view) */
-.sv-num {
-    transform: translateX(-40px);
-}
-
-.sv-title-en {
-    transform: translateY(40px);
-}
-
-.sv-title-ja {
-    transform: translateY(20px);
-}
-
-.sv-feat {
-    transform: translateY(20px);
 }
 
 /* ========================================
