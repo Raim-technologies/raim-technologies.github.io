@@ -21,6 +21,9 @@
     /* Signal — the green. Used with intent. */
     --signal: #1dbd4d;
     --signal-hover: #13a13e;
+    /* 白背景上の文字・ボタン用の深い緑(白文字と4.6:1、AA通過) */
+    --signal-deep: #15803d;
+    --signal-deep-hover: #166534;
     --signal-surface: rgba(29, 189, 77, 0.06);
 
     /* Typography */
@@ -634,7 +637,7 @@ button {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 400;
-    color: var(--signal);
+    color: var(--signal-deep);
     letter-spacing: 0.15em;
     margin-bottom: var(--space-4);
     text-transform: uppercase;
@@ -658,7 +661,7 @@ button {
 }
 
 .text-accent {
-    color: var(--signal);
+    color: var(--signal-deep);
 }
 
 .hero-text {
@@ -690,12 +693,12 @@ button {
 }
 
 .btn-primary {
-    background: var(--signal);
+    background: var(--signal-deep);
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background: var(--signal-hover);
+    background: var(--signal-deep-hover);
 }
 
 .btn-outline {
@@ -792,7 +795,7 @@ section {
 }
 
 .feature-card:hover .feature-icon svg {
-    stroke: var(--signal);
+    stroke: var(--signal-deep);
 }
 
 .feature-title {
@@ -879,7 +882,7 @@ section {
 }
 
 .service-link:hover {
-    color: var(--signal);
+    color: var(--signal-deep);
 }
 
 /* リンクの当たり判定をカード全体に広げる */
@@ -890,7 +893,7 @@ section {
 }
 
 .service-card:hover .service-link {
-    color: var(--signal);
+    color: var(--signal-deep);
 }
 
 /* ========================================
@@ -1424,6 +1427,10 @@ section {
     stroke: var(--signal);
 }
 
+.sv-section[data-theme="light"] .sv-feat:hover svg {
+    stroke: var(--signal-deep);
+}
+
 .sv-feat::before {
     content: '';
     position: absolute;
@@ -1541,7 +1548,7 @@ section {
 }
 
 .required {
-    color: var(--signal);
+    color: var(--signal-deep);
 }
 
 .form-input,
@@ -1562,7 +1569,7 @@ section {
 .form-select:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: var(--signal);
+    border-color: var(--signal-deep);
 }
 
 .form-input::placeholder,
@@ -1607,7 +1614,7 @@ section {
 }
 
 .checkbox-label input:focus-visible + .checkbox-custom {
-    outline: 2px solid var(--signal);
+    outline: 2px solid var(--signal-deep);
     outline-offset: 2px;
 }
 
@@ -1622,8 +1629,8 @@ section {
 }
 
 .checkbox-label input:checked + .checkbox-custom {
-    background: var(--signal);
-    border-color: var(--signal);
+    background: var(--signal-deep);
+    border-color: var(--signal-deep);
 }
 
 .checkbox-label input:checked + .checkbox-custom::after {
@@ -1670,8 +1677,8 @@ a.sv-contact-value {
 }
 
 a.sv-contact-value:hover {
-    color: var(--signal);
-    text-decoration-color: var(--signal);
+    color: var(--signal-deep);
+    text-decoration-color: var(--signal-deep);
 }
 
 .sv-info-row dd a {
@@ -1681,8 +1688,8 @@ a.sv-contact-value:hover {
 }
 
 .sv-info-row dd a:hover {
-    color: var(--signal);
-    text-decoration-color: var(--signal);
+    color: var(--signal-deep);
+    text-decoration-color: var(--signal-deep);
 }
 
 /* ========================================
@@ -1721,8 +1728,8 @@ a.sv-contact-value:hover {
 }
 
 .to-top:hover {
-    color: var(--signal);
-    border-color: var(--signal);
+    color: var(--signal-deep);
+    border-color: var(--signal-deep);
 }
 
 /* ========================================
