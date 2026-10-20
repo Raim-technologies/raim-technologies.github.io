@@ -21,6 +21,10 @@
     /* Signal — the green. Used with intent. */
     --signal: #1dbd4d;
     --signal-hover: #13a13e;
+    /* 白背景上の文字・ボタン用の深い緑。ロゴの緑(#1dbd4d, 色相138°)と
+       同一色相・同彩度のまま暗くした色(白文字と4.6:1、AA通過) */
+    --signal-deep: #128735;
+    --signal-deep-hover: #117930;
     --signal-surface: rgba(29, 189, 77, 0.06);
 
     /* Typography */
@@ -57,14 +61,14 @@
     align-items: center;
     justify-content: center;
     will-change: opacity;
-    animation: splash-exit 0.4s cubic-bezier(0.4, 0, 0.2, 1) 2.4s forwards;
+    animation: splash-exit 0.35s cubic-bezier(0.4, 0, 0.2, 1) 1.6s forwards;
 }
 
 .splash-logo {
     height: 72px;
     width: auto;
     will-change: clip-path, transform, opacity;
-    animation: splash-anim 2s ease 0.2s both;
+    animation: splash-anim 1.4s ease 0.1s both;
 }
 
 @keyframes splash-anim {
@@ -106,9 +110,18 @@
     }
 }
 
+/* Splash is shown once per session; .no-splash is set in <head> on repeat views */
+.no-splash #splash {
+    display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
     #splash {
         display: none;
+    }
+
+    html {
+        scroll-behavior: auto;
     }
 }
 
@@ -166,6 +179,25 @@ button {
 }
 
 /* ========================================
+   Skip Link
+   ======================================== */
+.skip-link {
+    position: fixed;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 10003;
+    padding: 10px 16px;
+    background: var(--ink);
+    color: #ffffff;
+    font-size: 0.85rem;
+    transform: translateY(-250%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* ========================================
    Floating Header (.gh)
    ======================================== */
 .gh {
@@ -181,7 +213,43 @@ button {
     pointer-events: none;
 }
 
+/* Scrolled: translucent backdrop so content never collides with the nav */
+.gh::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gh.gh--scrolled::before {
+    opacity: 1;
+}
+
+/* ダークセクション上では下地の紺(#111827)より明確に暗くして
+   輝度差で境界を立たせる */
+.gh.gh--light::before {
+    background: rgba(4, 7, 15, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.gh.gnav-open::before {
+    opacity: 0;
+}
+
 .gh-logo,
+.gh-nav,
+.gh-menu {
+    position: relative;
+}
+
+.gh-logo,
+.gh-nav,
 .gh-menu {
     pointer-events: auto;
 }
@@ -218,6 +286,48 @@ button {
 
 .gh.gh--logo-hiding .gh-logo-img--icon {
     opacity: 0;
+}
+
+/* Inline nav (desktop) */
+.gh-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.gh-nav-link {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: var(--space-2) 0;
+    transition: color 0.3s cubic-bezier(.77, 0, .175, 1);
+}
+
+.gh-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--signal);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.3s cubic-bezier(.77, 0, .175, 1);
+}
+
+.gh-nav-link:hover::after,
+.gh-nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+}
+
+.gh.gh--light .gh-nav-link {
+    color: #ffffff;
 }
 
 /* Menu button */
@@ -278,6 +388,13 @@ button {
     transform: translateY(-4px) rotate(-45deg);
 }
 
+/* Hamburger is mobile-only; the inline nav is hidden at mobile widths instead */
+@media (min-width: 769px) {
+    .gh-menu {
+        display: none;
+    }
+}
+
 /* ========================================
    Full-screen Nav Overlay (.gnav)
    ======================================== */
@@ -287,19 +404,23 @@ button {
     z-index: 10000;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0s 0.8s;
+    /* visibility: 閉じている間はTabキーでリンクに到達させない */
+    visibility: hidden;
+    transition: opacity 0s 0.55s, visibility 0s 0.55s;
 }
 
 .gnav.open {
     pointer-events: auto;
     opacity: 1;
-    transition: opacity 0s 0s;
+    visibility: visible;
+    transition: opacity 0s 0s, visibility 0s 0s;
 }
 
 .gnav.close {
     pointer-events: none;
     opacity: 1;
-    transition: opacity 0s 0.8s;
+    visibility: visible;
+    transition: opacity 0s 0.55s, visibility 0s 0.55s;
 }
 
 /* Background wipe */
@@ -309,7 +430,7 @@ button {
     background: var(--ink);
     transform: scaleX(0);
     transform-origin: right center;
-    transition: transform 0.7s cubic-bezier(1, 0, 0, 1);
+    transition: transform 0.5s cubic-bezier(1, 0, 0, 1);
 }
 
 .gnav.open .gnav-bg {
@@ -352,7 +473,7 @@ button {
     overflow: hidden;
     transform: translateY(100%);
     opacity: 0;
-    transition: transform 0.5s ease, opacity 0.5s ease, background 0.3s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease, background 0.3s ease;
 }
 
 .gnav.open .gnav-link {
@@ -360,10 +481,10 @@ button {
     opacity: 1;
 }
 
-.gnav.open .gnav-link:nth-child(1) { transition-delay: 0.3s, 0.3s, 0s; }
-.gnav.open .gnav-link:nth-child(2) { transition-delay: 0.33s, 0.33s, 0s; }
-.gnav.open .gnav-link:nth-child(3) { transition-delay: 0.36s, 0.36s, 0s; }
-.gnav.open .gnav-link:nth-child(4) { transition-delay: 0.39s, 0.39s, 0s; }
+.gnav.open .gnav-link:nth-child(1) { transition-delay: 0.15s, 0.15s, 0s; }
+.gnav.open .gnav-link:nth-child(2) { transition-delay: 0.18s, 0.18s, 0s; }
+.gnav.open .gnav-link:nth-child(3) { transition-delay: 0.21s, 0.21s, 0s; }
+.gnav.open .gnav-link:nth-child(4) { transition-delay: 0.24s, 0.24s, 0s; }
 
 .gnav.close .gnav-link {
     transform: translateY(100%);
@@ -388,6 +509,15 @@ button {
 .gnav-link:hover::before {
     transform: scaleY(1);
     transform-origin: top center;
+}
+
+/* Current page indicator */
+.gnav-link[aria-current="page"]::before {
+    transform: scaleY(1);
+}
+
+.gnav-link[aria-current="page"] .gnav-link-index {
+    opacity: 1;
 }
 
 .gnav-link:hover {
@@ -424,7 +554,7 @@ button {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+    transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
 }
 
 .gnav.open .gnav-info {
@@ -443,6 +573,10 @@ button {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.4);
     line-height: 1.8;
+}
+
+.gnav-info a:hover {
+    color: #ffffff;
 }
 
 /* ========================================
@@ -504,7 +638,7 @@ button {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 400;
-    color: var(--signal);
+    color: var(--signal-deep);
     letter-spacing: 0.15em;
     margin-bottom: var(--space-4);
     text-transform: uppercase;
@@ -528,7 +662,7 @@ button {
 }
 
 .text-accent {
-    color: var(--signal);
+    color: var(--signal-deep);
 }
 
 .hero-text {
@@ -560,12 +694,12 @@ button {
 }
 
 .btn-primary {
-    background: var(--signal);
+    background: var(--signal-deep);
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background: var(--signal-hover);
+    background: var(--signal-deep-hover);
 }
 
 .btn-outline {
@@ -662,7 +796,7 @@ section {
 }
 
 .feature-card:hover .feature-icon svg {
-    stroke: var(--signal);
+    stroke: var(--signal-deep);
 }
 
 .feature-title {
@@ -749,7 +883,18 @@ section {
 }
 
 .service-link:hover {
-    color: var(--signal);
+    color: var(--signal-deep);
+}
+
+/* リンクの当たり判定をカード全体に広げる */
+.service-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.service-card:hover .service-link {
+    color: var(--signal-deep);
 }
 
 /* ========================================
@@ -906,16 +1051,6 @@ section {
     opacity: 0.12;
 }
 
-/* Prose block — generic text column */
-.sv-prose {
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-prose {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
-}
-
 /* Message (CEO) body */
 .sv-body--message {
     grid-template-columns: 180px 1fr;
@@ -923,27 +1058,9 @@ section {
     align-items: start;
 }
 
-.sv-message-photo {
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-message-photo {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
-}
-
 .sv-ceo-photo {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sv-message-text {
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-message-text {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.4s;
 }
 
 .sv-message-text p {
@@ -957,7 +1074,7 @@ section {
 }
 
 .sv-section[data-theme="dark"] .sv-message-text p {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .sv-signature {
@@ -972,7 +1089,7 @@ section {
 .sv-signature-title {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.05em;
 }
 
@@ -985,7 +1102,7 @@ section {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 /* Single-column body (company info) */
@@ -996,12 +1113,6 @@ section {
 /* Info table */
 .sv-info-table {
     max-width: 800px;
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-info-table {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
 }
 
 .sv-info-list {
@@ -1071,21 +1182,22 @@ section {
 
 .sv-contact-label {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--ink-4);
+    font-size: 0.85rem;
+    color: var(--ink-2);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
 .sv-contact-value {
-    font-size: 0.95rem;
-    color: var(--ink-2);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink);
 }
 
 .sv-contact-note {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--ink-4);
+    font-size: 0.8rem;
+    color: var(--ink-3);
 }
 
 /* Form wrapper inside sv-body */
@@ -1093,12 +1205,6 @@ section {
     background: var(--ground-alt);
     padding: var(--space-6);
     border: 1px solid var(--rule);
-    opacity: 0;
-}
-
-.sv-section.in-view .sv-form-wrapper {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.4s;
 }
 
 /* ========================================
@@ -1106,12 +1212,9 @@ section {
    ======================================== */
 .sv-hero {
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
     background: var(--ink);
     color: #ffffff;
-    padding: 0;
+    padding: 180px 0 90px;
 }
 
 .sv-hero .container {
@@ -1134,59 +1237,73 @@ section {
     margin-top: var(--space-4);
 }
 
-.sv-hero-scroll {
-    position: absolute;
-    bottom: var(--space-7);
-    left: 50%;
-    transform: translateX(-50%);
+/* In-page index shown in the hero */
+.sv-hero-index {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sv-index-link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-3);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.sv-index-link:hover {
+    color: #ffffff;
+}
+
+.sv-index-num {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--signal);
+}
+
+.sv-index-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-3);
+    gap: 2px;
 }
 
-.sv-hero-scroll-text {
+.sv-index-text {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.sv-index-ja {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.05em;
+}
+
+.sv-index-arrow {
+    font-family: var(--font-mono);
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.35);
+    margin-left: auto;
+    transition: transform var(--ease), color var(--ease);
 }
 
-.sv-hero-scroll-line {
-    display: block;
-    width: 1px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.sv-hero-scroll-line::after {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--signal);
-    animation: sv-scroll-line 1.8s cubic-bezier(.4, 0, .2, 1) infinite;
-}
-
-@keyframes sv-scroll-line {
-    0%   { top: -100%; }
-    50%  { top: 0; }
-    100% { top: 100%; }
+.sv-index-link:hover .sv-index-arrow {
+    color: var(--signal);
+    transform: translateY(2px);
 }
 
 /* ========================================
    Service Page — Sections
    ======================================== */
 .sv-section {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
     padding: var(--space-9) 0;
+    /* アンカー移動時に固定ヘッダーと重ならない余白 */
+    scroll-margin-top: 48px;
 }
 
 .sv-section[data-theme="light"] {
@@ -1212,7 +1329,7 @@ section {
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.04em;
-    opacity: 0;
+    opacity: 0.08;
     pointer-events: none;
     user-select: none;
 }
@@ -1232,7 +1349,6 @@ section {
     letter-spacing: -0.03em;
     line-height: 1.1;
     margin-top: calc(var(--space-4) * -1);
-    opacity: 0;
 }
 
 .sv-title-ja {
@@ -1241,7 +1357,6 @@ section {
     font-size: 0.85rem;
     letter-spacing: 0.05em;
     margin-top: var(--space-3);
-    opacity: 0;
 }
 
 .sv-section[data-theme="light"] .sv-title-ja {
@@ -1264,7 +1379,6 @@ section {
     font-size: 0.95rem;
     line-height: 2;
     max-width: 640px;
-    opacity: 0;
 }
 
 .sv-section[data-theme="light"] .sv-desc {
@@ -1272,7 +1386,7 @@ section {
 }
 
 .sv-section[data-theme="dark"] .sv-desc {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 /* Features — minimal row list */
@@ -1292,7 +1406,6 @@ section {
     letter-spacing: -0.01em;
     cursor: default;
     transition: transform 0.3s cubic-bezier(.77, 0, .175, 1), background 0.3s ease;
-    opacity: 0;
 }
 
 .sv-feat svg {
@@ -1315,6 +1428,10 @@ section {
     stroke: var(--signal);
 }
 
+.sv-section[data-theme="light"] .sv-feat:hover svg {
+    stroke: var(--signal-deep);
+}
+
 .sv-feat::before {
     content: '';
     position: absolute;
@@ -1333,9 +1450,8 @@ section {
     transform-origin: top center;
 }
 
-.sv-section.in-view .sv-feat:hover {
+.sv-feat:hover {
     transform: translateX(8px);
-    transition: transform 0.3s cubic-bezier(.77, 0, .175, 1), background 0.3s ease;
 }
 
 .sv-section[data-theme="light"] .sv-feat:hover {
@@ -1344,79 +1460,6 @@ section {
 
 .sv-section[data-theme="dark"] .sv-feat:hover {
     background: rgba(255, 255, 255, 0.05);
-}
-
-/* ========================================
-   Service Page — Scroll Animations
-   ======================================== */
-.sv-section.in-view .sv-num {
-    opacity: 0.08;
-    transform: translateX(0);
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1),
-                transform 0.8s cubic-bezier(.075, .82, .165, 1);
-}
-
-.sv-section.in-view .sv-title-en {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.1s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.1s;
-}
-
-.sv-section.in-view .sv-title-ja {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.2s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.2s;
-}
-
-.sv-section.in-view .sv-desc {
-    opacity: 1;
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s;
-}
-
-.sv-section.in-view .sv-feat {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger feat items via nth-child */
-.sv-section.in-view .sv-feat:nth-child(1) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.3s,
-                background 0.3s ease;
-}
-.sv-section.in-view .sv-feat:nth-child(2) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.36s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.36s,
-                background 0.3s ease;
-}
-.sv-section.in-view .sv-feat:nth-child(3) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.42s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.42s,
-                background 0.3s ease;
-}
-.sv-section.in-view .sv-feat:nth-child(4) {
-    transition: opacity 0.8s cubic-bezier(.075, .82, .165, 1) 0.48s,
-                transform 0.8s cubic-bezier(.075, .82, .165, 1) 0.48s,
-                background 0.3s ease;
-}
-
-/* Pre-animation states (before in-view) */
-.sv-num {
-    transform: translateX(-40px);
-}
-
-.sv-title-en {
-    transform: translateY(40px);
-}
-
-.sv-title-ja {
-    transform: translateY(20px);
-}
-
-.sv-feat {
-    transform: translateY(20px);
 }
 
 /* ========================================
@@ -1506,7 +1549,7 @@ section {
 }
 
 .required {
-    color: var(--signal);
+    color: var(--signal-deep);
 }
 
 .form-input,
@@ -1527,7 +1570,7 @@ section {
 .form-select:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: var(--signal);
+    border-color: var(--signal-deep);
 }
 
 .form-input::placeholder,
@@ -1554,6 +1597,7 @@ section {
 }
 
 .checkbox-label {
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--space-3);
@@ -1562,8 +1606,17 @@ section {
     color: var(--ink-2);
 }
 
+/* Visually hidden but still focusable for keyboard users */
 .checkbox-label input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.checkbox-label input:focus-visible + .checkbox-custom {
+    outline: 2px solid var(--signal-deep);
+    outline-offset: 2px;
 }
 
 .checkbox-custom {
@@ -1577,8 +1630,8 @@ section {
 }
 
 .checkbox-label input:checked + .checkbox-custom {
-    background: var(--signal);
-    border-color: var(--signal);
+    background: var(--signal-deep);
+    border-color: var(--signal-deep);
 }
 
 .checkbox-label input:checked + .checkbox-custom::after {
@@ -1593,19 +1646,92 @@ section {
     transform: rotate(45deg);
 }
 
+/* Inline form status (replaces alert dialogs) */
+.form-status {
+    display: none;
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    border: 1px solid;
+}
+
+.form-status.is-success {
+    display: block;
+    color: #15803d;
+    border-color: #86efac;
+    background: #f0fdf4;
+}
+
+.form-status.is-error {
+    display: block;
+    color: #b91c1c;
+    border-color: #fca5a5;
+    background: #fef2f2;
+}
+
+/* Clickable contact details */
+a.sv-contact-value {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-strong);
+}
+
+a.sv-contact-value:hover {
+    color: var(--signal-deep);
+    text-decoration-color: var(--signal-deep);
+}
+
+.sv-info-row dd a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-strong);
+}
+
+.sv-info-row dd a:hover {
+    color: var(--signal-deep);
+    text-decoration-color: var(--signal-deep);
+}
+
 /* ========================================
-   Scroll Snap (subpages with sv-hero)
+   Back to Top
    ======================================== */
-html:has(.sv-hero) {
-    scroll-snap-type: y proximity;
+.to-top {
+    position: fixed;
+    right: var(--space-5);
+    bottom: var(--space-5);
+    z-index: 9990;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--rule-strong);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0.25s,
+                border-color var(--ease), color var(--ease);
 }
 
-.sv-hero,
-.sv-section,
-.cta {
-    scroll-snap-align: start;
+.to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0s,
+                border-color var(--ease), color var(--ease);
 }
 
+.to-top:hover {
+    color: var(--signal-deep);
+    border-color: var(--signal-deep);
+}
 
 /* ========================================
    Responsive
@@ -1635,6 +1761,10 @@ html:has(.sv-hero) {
         padding: var(--space-4) var(--space-5);
     }
 
+    .gh-nav {
+        display: none;
+    }
+
     .gnav-inner {
         padding: var(--space-9) var(--space-5);
     }
@@ -1645,12 +1775,32 @@ html:has(.sv-hero) {
         grid-template-columns: 1fr;
     }
 
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+
+    .hero-visual {
+        justify-content: center;
+    }
+
+    .hero-visual img {
+        width: min(480px, 100%);
+    }
+
     .hero-buttons {
         flex-direction: column;
     }
 
     .btn {
         width: 100%;
+    }
+
+    /* 16px以上にしないとiOS Safariがフォーカス時に自動ズームする */
+    .form-input,
+    .form-select,
+    .form-textarea {
+        font-size: 1rem;
     }
 
     .footer-inner {
@@ -1663,12 +1813,16 @@ html:has(.sv-hero) {
         gap: var(--space-4);
     }
 
-    html:has(.sv-hero) {
-        scroll-snap-type: none;
+    .sv-hero {
+        padding: 130px 0 56px;
+    }
+
+    .sv-hero-index {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .sv-section {
-        min-height: auto;
         padding: var(--space-8) 0;
     }
 
@@ -1727,18 +1881,5 @@ html:has(.sv-hero) {
     .feature-card,
     .service-card {
         padding: var(--space-5);
-    }
-
-    .hero-inner {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-    }
-
-    .hero-visual {
-        justify-content: center;
-    }
-
-    .hero-visual img {
-        width: min(480px, 100%);
     }
 }

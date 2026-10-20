@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="株式会社Raimテクノロジーズの会社概要。企業理念、会社情報、代表挨拶をご紹介します。">
     <link rel="icon" type="image/png" href="assets/new-logo/logo-icon.png">
+    <link rel="canonical" href="https://www.raim-tech.com/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="株式会社Raimテクノロジーズ">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://www.raim-tech.com/about.html">
+    <meta property="og:title" content="会社概要 | 株式会社Raimテクノロジーズ">
+    <meta property="og:description" content="株式会社Raimテクノロジーズの会社概要。企業理念、会社情報、代表挨拶をご紹介します。">
+    <meta property="og:image" content="https://www.raim-tech.com/raim.png">
+    <meta name="twitter:card" content="summary">
     <title>会社概要 | 株式会社Raimテクノロジーズ</title>
-    <link rel="stylesheet" href="css/style.css?v=20260217d">
+    <link rel="stylesheet" href="css/style.css?v=20261020o">
+    <script>try{if(sessionStorage.getItem("splashShown")){document.documentElement.classList.add("no-splash")}else{sessionStorage.setItem("splashShown","1")}}catch(e){}</script>
     <link rel="preload" href="assets/new-logo/logo-full1.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +24,7 @@
     <script src="js/lucide.min.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <div id="splash">
         <img src="assets/new-logo/logo-full1.png" alt="" class="splash-logo">
     </div>
@@ -24,6 +35,12 @@
             <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--default">
             <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--icon">
         </a>
+        <nav class="gh-nav" aria-label="メインナビゲーション">
+            <a href="index.html" class="gh-nav-link">Home</a>
+            <a href="about.html" class="gh-nav-link">About</a>
+            <a href="service.html" class="gh-nav-link">Services</a>
+            <a href="contact.html" class="gh-nav-link">Contact</a>
+        </nav>
         <button class="gh-menu" id="gh-menu" aria-label="メニューを開く">
             <span class="gh-menu-text">Menu</span>
             <span class="gh-menu-lines">
@@ -60,25 +77,47 @@
                 </a>
             </div>
             <div class="gnav-info">
-                <p>info@raim-tech.com</p>
-                <p>090-4992-4764</p>
+                <p><a href="mailto:info@raim-tech.com">info@raim-tech.com</a></p>
+                <p><a href="tel:09049924764">090-4992-4764</a></p>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main id="main">
         <section class="sv-hero">
             <div class="container">
                 <h1 class="sv-hero-title">About Us</h1>
                 <span class="sv-hero-sub">会社概要</span>
-            </div>
-            <div class="sv-hero-scroll">
-                <span class="sv-hero-scroll-text">Scroll</span>
-                <span class="sv-hero-scroll-line"></span>
+                <nav class="sv-hero-index" aria-label="ページ内目次">
+                    <a href="#philosophy" class="sv-index-link">
+                        <span class="sv-index-num">01</span>
+                        <span class="sv-index-body">
+                            <span class="sv-index-text">Philosophy</span>
+                            <span class="sv-index-ja">企業理念</span>
+                        </span>
+                        <span class="sv-index-arrow" aria-hidden="true">↓</span>
+                    </a>
+                    <a href="#message" class="sv-index-link">
+                        <span class="sv-index-num">02</span>
+                        <span class="sv-index-body">
+                            <span class="sv-index-text">Message</span>
+                            <span class="sv-index-ja">代表挨拶</span>
+                        </span>
+                        <span class="sv-index-arrow" aria-hidden="true">↓</span>
+                    </a>
+                    <a href="#company" class="sv-index-link">
+                        <span class="sv-index-num">03</span>
+                        <span class="sv-index-body">
+                            <span class="sv-index-text">Company</span>
+                            <span class="sv-index-ja">会社情報</span>
+                        </span>
+                        <span class="sv-index-arrow" aria-hidden="true">↓</span>
+                    </a>
+                </nav>
             </div>
         </section>
 
-        <section class="sv-section" data-theme="light">
+        <section class="sv-section" data-theme="light" id="philosophy">
             <div class="container">
                 <div class="sv-head">
                     <span class="sv-num">01</span>
@@ -100,7 +139,7 @@
             </div>
         </section>
 
-        <section class="sv-section" data-theme="dark">
+        <section class="sv-section" data-theme="dark" id="message">
             <div class="container">
                 <div class="sv-head">
                     <span class="sv-num">02</span>
@@ -109,7 +148,7 @@
                 </div>
                 <div class="sv-body sv-body--message">
                     <div class="sv-message-photo">
-                        <img src="assets/ceo-photo.png" alt="代表取締役 高島 湊斗" class="sv-ceo-photo">
+                        <img src="assets/ceo-photo.png" alt="代表取締役 高島 湊斗" class="sv-ceo-photo" width="577" height="643">
                     </div>
                     <div class="sv-message-text">
                         <p>株式会社Raimテクノロジーズのホームページをご覧いただき、誠にありがとうございます。</p>
@@ -126,7 +165,7 @@
             </div>
         </section>
 
-        <section class="sv-section" data-theme="light">
+        <section class="sv-section" data-theme="light" id="company">
             <div class="container">
                 <div class="sv-head">
                     <span class="sv-num">03</span>
@@ -154,11 +193,11 @@
                             </div>
                             <div class="sv-info-row">
                                 <dt>電話番号</dt>
-                                <dd>090-4992-4764</dd>
+                                <dd><a href="tel:09049924764">090-4992-4764</a></dd>
                             </div>
                             <div class="sv-info-row">
                                 <dt>メール</dt>
-                                <dd>info@raim-tech.com</dd>
+                                <dd><a href="mailto:info@raim-tech.com">info@raim-tech.com</a></dd>
                             </div>
                             <div class="sv-info-row">
                                 <dt>事業内容</dt>
@@ -204,10 +243,12 @@
                 </nav>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">&copy; <script>document.write(new Date().getFullYear())</script> Raim Technologies Inc. All Rights Reserved.</p>
+                <p class="copyright">&copy; <span class="copyright-year">2026</span> Raim Technologies Inc. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <button class="to-top" id="to-top" aria-label="ページ上部へ戻る">↑</button>
 
     <script src="js/main.js"></script>
 </body>

@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="株式会社Raimテクノロジーズへのお問い合わせ。ご質問、ご相談はこちらからお気軽にどうぞ。">
     <link rel="icon" type="image/png" href="assets/new-logo/logo-icon.png">
+    <link rel="canonical" href="https://www.raim-tech.com/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="株式会社Raimテクノロジーズ">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://www.raim-tech.com/contact.html">
+    <meta property="og:title" content="お問い合わせ | 株式会社Raimテクノロジーズ">
+    <meta property="og:description" content="株式会社Raimテクノロジーズへのお問い合わせ。ご質問、ご相談はこちらからお気軽にどうぞ。">
+    <meta property="og:image" content="https://www.raim-tech.com/raim.png">
+    <meta name="twitter:card" content="summary">
     <title>お問い合わせ | 株式会社Raimテクノロジーズ</title>
-    <link rel="stylesheet" href="css/style.css?v=20260217d">
+    <link rel="stylesheet" href="css/style.css?v=20261020o">
+    <script>try{if(sessionStorage.getItem("splashShown")){document.documentElement.classList.add("no-splash")}else{sessionStorage.setItem("splashShown","1")}}catch(e){}</script>
     <link rel="preload" href="assets/new-logo/logo-full1.png" as="image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +24,7 @@
     <script src="js/lucide.min.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <div id="splash">
         <img src="assets/new-logo/logo-full1.png" alt="" class="splash-logo">
     </div>
@@ -24,6 +35,12 @@
             <img src="assets/new-logo/logo-full1.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--default">
             <img src="assets/new-logo/logo-icon.png" alt="Raim Technologies" class="gh-logo-img gh-logo-img--icon">
         </a>
+        <nav class="gh-nav" aria-label="メインナビゲーション">
+            <a href="index.html" class="gh-nav-link">Home</a>
+            <a href="about.html" class="gh-nav-link">About</a>
+            <a href="service.html" class="gh-nav-link">Services</a>
+            <a href="contact.html" class="gh-nav-link">Contact</a>
+        </nav>
         <button class="gh-menu" id="gh-menu" aria-label="メニューを開く">
             <span class="gh-menu-text">Menu</span>
             <span class="gh-menu-lines">
@@ -60,21 +77,17 @@
                 </a>
             </div>
             <div class="gnav-info">
-                <p>info@raim-tech.com</p>
-                <p>090-4992-4764</p>
+                <p><a href="mailto:info@raim-tech.com">info@raim-tech.com</a></p>
+                <p><a href="tel:09049924764">090-4992-4764</a></p>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main id="main">
         <section class="sv-hero">
             <div class="container">
                 <h1 class="sv-hero-title">Contact</h1>
                 <span class="sv-hero-sub">お問い合わせ</span>
-            </div>
-            <div class="sv-hero-scroll">
-                <span class="sv-hero-scroll-text">Scroll</span>
-                <span class="sv-hero-scroll-line"></span>
             </div>
         </section>
 
@@ -93,7 +106,7 @@
                                 <i data-lucide="phone"></i>
                                 <div>
                                     <span class="sv-contact-label">電話番号</span>
-                                    <span class="sv-contact-value">090-4992-4764</span>
+                                    <a href="tel:09049924764" class="sv-contact-value">090-4992-4764</a>
                                     <span class="sv-contact-note">受付時間: 平日 9:00 - 18:00</span>
                                 </div>
                             </div>
@@ -101,7 +114,7 @@
                                 <i data-lucide="mail"></i>
                                 <div>
                                     <span class="sv-contact-label">メールアドレス</span>
-                                    <span class="sv-contact-value">info@raim-tech.com</span>
+                                    <a href="mailto:info@raim-tech.com" class="sv-contact-value">info@raim-tech.com</a>
                                 </div>
                             </div>
                             <div class="sv-contact-item">
@@ -148,6 +161,7 @@
                             <div class="form-submit">
                                 <button type="submit" class="btn btn-primary btn-large btn-full">送信する</button>
                             </div>
+                            <p class="form-status" role="status" aria-live="polite"></p>
                         </form>
                     </div>
                 </div>
@@ -178,10 +192,12 @@
                 </nav>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">&copy; <script>document.write(new Date().getFullYear())</script> Raim Technologies Inc. All Rights Reserved.</p>
+                <p class="copyright">&copy; <span class="copyright-year">2026</span> Raim Technologies Inc. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <button class="to-top" id="to-top" aria-label="ページ上部へ戻る">↑</button>
 
     <script src="js/main.js"></script>
 </body>
