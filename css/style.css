@@ -1246,8 +1246,8 @@ section {
     display: flex;
     align-items: baseline;
     gap: var(--space-3);
-    padding: var(--space-3) var(--space-2);
-    color: rgba(255, 255, 255, 0.75);
+    padding: var(--space-4) var(--space-3);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .sv-index-link:hover {
@@ -1256,18 +1256,18 @@ section {
 
 .sv-index-num {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--signal);
 }
 
 .sv-index-text {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    font-weight: 600;
 }
 
 .sv-index-arrow {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.35);
     margin-left: auto;
     transition: transform var(--ease), color var(--ease);
