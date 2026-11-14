@@ -2046,6 +2046,13 @@ a.sv-contact-value:hover {
         grid-column: 1 / -1;
     }
 
+    /* 自動配置だと矢印がタイトルの下の行に落ちるため日付の行に固定 */
+    .news-arrow {
+        grid-row: 1;
+        grid-column: 2;
+        justify-self: end;
+    }
+
     .sp-hide {
         display: none;
     }
