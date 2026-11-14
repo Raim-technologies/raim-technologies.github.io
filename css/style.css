@@ -485,6 +485,26 @@ button {
 .gnav.open .gnav-link:nth-child(2) { transition-delay: 0.18s, 0.18s, 0s; }
 .gnav.open .gnav-link:nth-child(3) { transition-delay: 0.21s, 0.21s, 0s; }
 .gnav.open .gnav-link:nth-child(4) { transition-delay: 0.24s, 0.24s, 0s; }
+.gnav.open .gnav-link:nth-child(5) { transition-delay: 0.27s, 0.27s, 0s; }
+
+/* 高さの低い画面 (375×667 など) でも 5 項目と連絡先が収まるように詰める。
+   それでも収まらない画面 (320×568 など) では、上から並べてスクロールできるようにする */
+@media (max-height: 700px) {
+    .gnav-inner {
+        justify-content: safe center;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .gnav-links {
+        gap: var(--space-2);
+    }
+
+    .gnav-link {
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-3);
+    }
+}
 
 .gnav.close .gnav-link {
     transform: translateY(100%);
