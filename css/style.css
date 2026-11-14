@@ -1105,8 +1105,10 @@ section {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Single-column body (company info) */
-.sv-body--single {
+/* Single-column body (company info)
+   後方で定義される .sv-body の 1fr 1fr に同詳細度で負けないよう
+   セレクタを .sv-body.sv-body--single にして優先させる */
+.sv-body.sv-body--single {
     grid-template-columns: 1fr;
 }
 
@@ -1734,6 +1736,183 @@ a.sv-contact-value:hover {
 }
 
 /* ========================================
+   Notice — 実証実験に伴うカメラ撮影のお知らせ
+   ======================================== */
+.notice-prose {
+    max-width: 800px;
+}
+
+.notice-prose .sv-desc + .sv-desc {
+    margin-top: var(--space-4);
+}
+
+.notice-note {
+    margin-top: var(--space-4);
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--ink-3);
+}
+
+.notice-box {
+    margin: var(--space-5) 0;
+    padding: var(--space-5);
+    border: 1px solid var(--rule-strong);
+    border-left: 3px solid var(--signal-deep);
+    background: var(--ground-alt);
+}
+
+.notice-box p {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2;
+    color: var(--ink);
+}
+
+.notice-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.notice-list li {
+    position: relative;
+    padding-left: 1em;
+}
+
+.notice-list li::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+.notice-compliance {
+    margin-top: var(--space-5);
+    max-width: 800px;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--ink-3);
+}
+
+.notice-contacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    max-width: 800px;
+}
+
+.notice-contact-group {
+    padding: var(--space-5);
+    border: 1px solid var(--rule);
+    background: var(--ground);
+}
+
+.notice-contact-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--signal-deep);
+    margin-bottom: var(--space-2);
+}
+
+.notice-contact-org {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.notice-contact-group .sv-contact-details {
+    margin-top: var(--space-5);
+}
+
+.notice-contact-group .sv-contact-value {
+    overflow-wrap: anywhere;
+}
+
+/* お知らせ一覧 (news.html) */
+.news-list {
+    list-style: none;
+    max-width: 800px;
+    border-top: 1px solid var(--rule);
+}
+
+.news-item {
+    border-bottom: 1px solid var(--rule);
+}
+
+.news-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-2);
+    transition: background var(--ease);
+}
+
+.news-link:hover {
+    background: var(--signal-surface);
+}
+
+.news-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+}
+
+.news-title {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+    transition: color var(--ease);
+}
+
+.news-link:hover .news-title {
+    color: var(--signal-deep);
+}
+
+.news-arrow {
+    font-family: var(--font-mono);
+    color: var(--ink-4);
+    transition: color var(--ease), transform var(--ease);
+}
+
+.news-link:hover .news-arrow {
+    color: var(--signal-deep);
+    transform: translateX(4px);
+}
+
+/* 個別お知らせの掲載日(ダークなヒーロー内に表示) */
+.notice-date {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* 個別お知らせから一覧へ戻るリンク */
+.notice-back {
+    max-width: 800px;
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--rule);
+}
+
+.notice-back a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.9rem;
+    color: var(--ink-3);
+    transition: color var(--ease);
+}
+
+.notice-back a:hover {
+    color: var(--signal-deep);
+}
+
+/* ========================================
    Responsive
    ======================================== */
 @media (max-width: 1024px) {
@@ -1862,6 +2041,26 @@ a.sv-contact-value:hover {
 
     .sv-form-wrapper {
         padding: var(--space-5);
+    }
+
+    .notice-contacts {
+        grid-template-columns: 1fr;
+    }
+
+    .news-link {
+        grid-template-columns: 1fr auto;
+        row-gap: var(--space-2);
+    }
+
+    .news-title {
+        grid-column: 1 / -1;
+    }
+
+    /* 自動配置だと矢印がタイトルの下の行に落ちるため日付の行に固定 */
+    .news-arrow {
+        grid-row: 1;
+        grid-column: 2;
+        justify-self: end;
     }
 
     .sp-hide {
