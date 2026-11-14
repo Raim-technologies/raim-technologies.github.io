@@ -107,9 +107,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Highlight current page in navs
-    var currentPath = location.pathname.split('/').pop() || 'index.html';
+    // Cloudflare Pages は /about.html を /about へ転送するので、.html と末尾の index を除いて比べる
+    var normPath = function (p) {
+        return p.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/\/$/, '') || '/';
+    };
+    var currentPath = normPath(location.pathname);
     document.querySelectorAll('.gnav-link, .gh-nav-link').forEach(function (link) {
-        if (link.getAttribute('href') === currentPath) {
+        if (normPath(link.pathname) === currentPath) {
             link.setAttribute('aria-current', 'page');
         }
     });
