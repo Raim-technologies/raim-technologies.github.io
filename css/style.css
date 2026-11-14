@@ -1105,8 +1105,10 @@ section {
     color: rgba(255, 255, 255, 0.6);
 }
 
-/* Single-column body (company info) */
-.sv-body--single {
+/* Single-column body (company info)
+   後方で定義される .sv-body の 1fr 1fr に同詳細度で負けないよう
+   セレクタを .sv-body.sv-body--single にして優先させる */
+.sv-body.sv-body--single {
     grid-template-columns: 1fr;
 }
 
@@ -1820,6 +1822,10 @@ a.sv-contact-value:hover {
 
 .notice-contact-group .sv-contact-details {
     margin-top: var(--space-5);
+}
+
+.notice-contact-group .sv-contact-value {
+    overflow-wrap: anywhere;
 }
 
 /* ========================================
