@@ -1740,6 +1740,12 @@ a.sv-contact-value:hover {
    ======================================== */
 .notice-prose {
     max-width: 800px;
+    text-wrap: pretty;
+}
+
+/* .sv-desc の 640px の上限を外し、注記・囲みと同じ幅で折り返す */
+.notice-prose .sv-desc {
+    max-width: none;
 }
 
 .notice-prose .sv-desc + .sv-desc {
