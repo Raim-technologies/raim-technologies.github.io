@@ -1734,6 +1734,95 @@ a.sv-contact-value:hover {
 }
 
 /* ========================================
+   Notice — 実証実験に伴うカメラ撮影のお知らせ
+   ======================================== */
+.notice-prose {
+    max-width: 800px;
+}
+
+.notice-prose .sv-desc + .sv-desc {
+    margin-top: var(--space-4);
+}
+
+.notice-note {
+    margin-top: var(--space-4);
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--ink-3);
+}
+
+.notice-box {
+    margin: var(--space-5) 0;
+    padding: var(--space-5);
+    border: 1px solid var(--rule-strong);
+    border-left: 3px solid var(--signal-deep);
+    background: var(--ground-alt);
+}
+
+.notice-box p {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2;
+    color: var(--ink);
+}
+
+.notice-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.notice-list li {
+    position: relative;
+    padding-left: 1em;
+}
+
+.notice-list li::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+.notice-compliance {
+    margin-top: var(--space-5);
+    max-width: 800px;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--ink-3);
+}
+
+.notice-contacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    max-width: 800px;
+}
+
+.notice-contact-group {
+    padding: var(--space-5);
+    border: 1px solid var(--rule);
+    background: var(--ground);
+}
+
+.notice-contact-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--signal-deep);
+    margin-bottom: var(--space-2);
+}
+
+.notice-contact-org {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.notice-contact-group .sv-contact-details {
+    margin-top: var(--space-5);
+}
+
+/* ========================================
    Responsive
    ======================================== */
 @media (max-width: 1024px) {
@@ -1862,6 +1951,10 @@ a.sv-contact-value:hover {
 
     .sv-form-wrapper {
         padding: var(--space-5);
+    }
+
+    .notice-contacts {
+        grid-template-columns: 1fr;
     }
 
     .sp-hide {
