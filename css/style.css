@@ -1150,6 +1150,96 @@ section {
 }
 
 /* ========================================
+   Privacy Policy
+   ======================================== */
+.pp {
+    max-width: 800px;
+    overflow-wrap: anywhere;
+}
+
+.pp p,
+.pp-list li {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--ink-2);
+}
+
+.pp p + p {
+    margin-top: var(--space-3);
+}
+
+.pp a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--rule-strong);
+}
+
+.pp a:hover {
+    color: var(--signal-deep);
+    text-decoration-color: var(--signal-deep);
+}
+
+.pp-section {
+    margin-top: var(--space-6);
+    padding: var(--space-6) 0 0;
+    border-top: 1px solid var(--rule);
+}
+
+.pp-heading {
+    display: flex;
+    gap: var(--space-2);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: var(--space-4);
+}
+
+.pp-heading-num {
+    font-family: var(--font-mono);
+    color: var(--signal-deep);
+}
+
+.pp-list {
+    list-style: disc;
+    padding-left: 1.5em;
+    margin-top: var(--space-3);
+}
+
+.pp-list--alpha {
+    list-style: lower-alpha;
+}
+
+.pp-list li::marker {
+    color: var(--ink-4);
+}
+
+.pp-mail {
+    font-weight: 500;
+}
+
+.pp-info {
+    margin-top: var(--space-8);
+}
+
+.pp-info .sv-info-row {
+    grid-template-columns: 200px 1fr;
+}
+
+.pp-dates {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: var(--space-6);
+}
+
+.pp .pp-dates span {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-3);
+}
+
+/* ========================================
    Contact — sv-section components
    ======================================== */
 .sv-contact-details {
@@ -1848,7 +1938,8 @@ a.sv-contact-value:hover {
         margin: 0 auto;
     }
 
-    .sv-info-row {
+    .sv-info-row,
+    .pp-info .sv-info-row {
         grid-template-columns: 1fr;
     }
 
